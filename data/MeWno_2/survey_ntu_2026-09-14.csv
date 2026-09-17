@@ -1,0 +1,26 @@
+participant.id_in_session,participant.code,participant.label,participant._is_bot,participant._index_in_pages,participant._max_page_index,participant._current_app_name,participant._current_page_name,participant.time_started_utc,participant.visited,participant.mturk_worker_id,participant.mturk_assignment_id,participant.payoff,player.id_in_group,player.role,player.payoff,player.gender,player.age,player.major,player.gpa,player.crt_bat_ball,player.crt_machines,player.crt_lilypads,player.att_capable,player.att_aggressive,player.att_skills,player.att_competitive,player.att_pressure,player.att_emotional,player.dictator_keep,group.id_in_subsession,subsession.round_number,session.code,session.label,session.mturk_HITId,session.mturk_HITGroupId,session.comment,session.is_demo
+1,cfn8fv6w,,0,587,587,FinalPage,ThankYou,2026-09-14 06:16:59.777071,1,,,611.11,1,,0.0,Woman,18,ECONOMICS,0.0,5,5,36,7,4,7,4,7,1,80,1,1,99iosefo,,,,,0
+2,a1q00v4p,,0,587,587,FinalPage,ThankYou,2026-09-14 06:16:59.895789,1,,,1388.89,2,,0.0,Man,21,Chemical Engineering,3.5,5,5,47,6,5,6,4,4,4,100,1,1,99iosefo,,,,,0
+3,rucumqi6,,0,587,587,FinalPage,ThankYou,2026-09-14 06:16:59.987057,1,,,1222.22,3,,0.0,Woman,19,Economics,5.0,5,5,47,7,1,7,1,7,1,89,1,1,99iosefo,,,,,0
+4,lbzqe7lh,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.402890,1,,,555.56,4,,0.0,Man,21,Electrical and Electronic Engineering,4.86,5,5,47,2,3,5,3,3,4,50,1,1,99iosefo,,,,,0
+5,i42igenv,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.510083,1,,,944.44,5,,0.0,Woman,19,Mechanical Engineering,0.0,5,5,47,7,4,5,1,7,2,70,1,1,99iosefo,,,,,0
+6,2nkc141x,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.564137,1,,,722.22,6,,0.0,Man,22,ECBU,0.0,5,5,36,5,4,5,2,2,4,100,1,1,99iosefo,,,,,0
+7,oqud1wxk,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.583781,1,,,500.0,7,,0.0,Man,19,Mechanical Engineering,4.5,5,5,47,7,3,7,2,7,2,50,1,1,99iosefo,,,,,0
+8,a6q31ex7,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.593150,1,,,555.56,8,,0.0,Woman,19,Accountancy,0.0,1,100,24,6,2,6,2,6,2,80,1,1,99iosefo,,,,,0
+9,o60mnzij,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.600802,1,,,277.78,9,,0.0,Woman,19,Economics,0.0,5,5,47,5,2,6,1,7,3,100,1,1,99iosefo,,,,,0
+10,bnt5i99k,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.609096,1,,,1277.78,10,,0.0,Man,20,Robotics ,4.9,5,5,47,7,2,7,3,6,2,100,1,1,99iosefo,,,,,0
+11,zrywj9fx,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.638517,1,,,722.22,11,,0.0,Man,22,Biological Sciences,4.8,5,5,47,5,3,6,4,4,4,100,1,1,99iosefo,,,,,0
+12,i44g0thi,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.645494,1,,,1111.11,12,,0.0,Man,18,Physics and Mathematical Sciences,4.04,5,5,47,7,1,7,2,7,1,50,1,1,99iosefo,,,,,0
+13,s9ryf5kv,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.652437,1,,,222.22,13,,0.0,Woman,19,Chemistry And Biological Chemistry,0.0,5,5,47,6,2,7,2,6,1,100,1,1,99iosefo,,,,,0
+14,oe31za5u,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.679392,1,,,1166.67,14,,0.0,Woman,18,Economics with second major in Business,4.5,5,5,47,7,6,7,1,7,1,100,1,1,99iosefo,,,,,0
+15,v86y9zyn,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.686214,1,,,888.89,15,,0.0,Man,19,DSAI,4.79,5,5,47,5,6,6,3,5,3,100,1,1,99iosefo,,,,,0
+16,3p6ks3hb,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.693437,1,,,722.22,16,,0.0,Woman,18,econ,0.0,10,100,24,6,7,7,2,7,3,94,1,1,99iosefo,,,,,0
+17,y5kgtmfb,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.700222,1,,,1000.0,17,,0.0,Woman,20,econ,4.6,5,5,47,7,2,7,1,7,2,100,1,1,99iosefo,,,,,0
+18,ebzeqzcf,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.708228,1,,,111.11,18,,0.0,Man,22,Economics and Data Science,4.91,5,5,47,6,5,6,4,6,4,100,1,1,99iosefo,,,,,0
+19,pb6d6kev,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.749218,1,,,777.78,19,,0.0,Woman,18,Biological Sciences,0.0,5,100,16,7,2,7,1,7,1,100,1,1,99iosefo,,,,,0
+20,m8xnbw73,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.778695,1,,,1000.0,20,,0.0,Woman,20,Accountancy,4.3,5,5,12,7,4,7,2,6,2,100,1,1,99iosefo,,,,,0
+21,an9ihpoe,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.785536,1,,,833.33,21,,0.0,Woman,19,psychology,0.0,10,100,24,6,7,6,4,6,4,60,1,1,99iosefo,,,,,0
+22,rbyuqaqn,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:00.797356,1,,,111.11,22,,0.0,Woman,19,business,0.0,10,100,24,7,7,7,1,7,1,100,1,1,99iosefo,,,,,0
+23,3pb269ab,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:01.139805,1,,,0.0,23,,0.0,Woman,20,eee,3.47,10,100,24,7,4,7,1,7,1,89,1,1,99iosefo,,,,,0
+24,ewpd3m8q,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:01.323728,1,,,388.89,24,,0.0,Woman,19,ECBU,0.0,2,100,96,5,3,7,3,7,4,100,1,1,99iosefo,,,,,0
+25,0tv7bd9u,,0,587,587,FinalPage,ThankYou,2026-09-14 06:17:01.359212,1,,,1277.78,25,,0.0,Man,19,ECBU,4.9,10,5,47,5,6,6,2,2,5,70,1,1,99iosefo,,,,,0

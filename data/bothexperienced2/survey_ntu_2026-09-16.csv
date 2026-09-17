@@ -1,0 +1,26 @@
+participant.id_in_session,participant.code,participant.label,participant._is_bot,participant._index_in_pages,participant._max_page_index,participant._current_app_name,participant._current_page_name,participant.time_started_utc,participant.visited,participant.mturk_worker_id,participant.mturk_assignment_id,participant.payoff,player.id_in_group,player.role,player.payoff,player.gender,player.age,player.major,player.gpa,player.crt_bat_ball,player.crt_machines,player.crt_lilypads,player.att_capable,player.att_aggressive,player.att_skills,player.att_competitive,player.att_pressure,player.att_emotional,player.dictator_keep,group.id_in_subsession,subsession.round_number,session.code,session.label,session.mturk_HITId,session.mturk_HITGroupId,session.comment,session.is_demo
+1,qvfebldb,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:27.267099,1,,,500.0,1,,0.0,Man,21,Computer Science,4.51,5,4,47,3,6,6,3,3,3,100,1,1,5ogs5ura,,,,,0
+2,vbjq2y24,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:27.586302,1,,,888.89,2,,0.0,Woman,21,APPLIED ECONOMICS,0.0,5,5,47,7,4,7,1,7,3,99,1,1,5ogs5ura,,,,,0
+3,fjbh3h2b,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:27.633391,1,,,1277.78,3,,0.0,Man,20,CCA,0.0,5,5,47,4,4,6,2,3,2,75,1,1,5ogs5ura,,,,,0
+4,j0v5am99,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.512590,1,,,55.56,4,,0.0,Woman,21,Physics,4.0,5,5,35,7,6,7,1,7,1,85,1,1,5ogs5ura,,,,,0
+5,wz4uvd97,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.547078,1,,,722.22,5,,0.0,Woman,22,Accounting,4.31,5,5,47,6,5,5,2,1,1,80,1,1,5ogs5ura,,,,,0
+6,bw46f79x,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.718813,1,,,944.44,6,,0.0,Man,17,environmental engineering and economics,0.0,5,5,47,4,5,3,7,2,6,50,1,1,5ogs5ura,,,,,0
+7,42qlc5nb,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.741028,1,,,888.89,7,,0.0,Man,22,business,4.4,5,5,47,4,4,4,4,4,4,100,1,1,5ogs5ura,,,,,0
+8,jw6ngkbn,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.756835,1,,,1166.67,8,,0.0,Man,18,DSAI,4.57,10,5,47,7,6,6,6,5,2,100,1,1,5ogs5ura,,,,,0
+9,booloaq9,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.796456,1,,,944.44,9,,0.0,Man,18,Economics,0.0,5,5,47,7,3,7,5,6,2,100,1,1,5ogs5ura,,,,,0
+10,2pc7nfit,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.842084,1,,,833.33,10,,0.0,Man,20,mechanical engineering ,5.0,5,5,47,7,2,6,2,7,4,80,1,1,5ogs5ura,,,,,0
+11,t7rx3zw3,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.859938,1,,,944.44,11,,0.0,Woman,22,Electronics,0.0,5,5,47,7,1,7,4,7,1,50,1,1,5ogs5ura,,,,,0
+12,p48n4bh0,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.869908,1,,,666.67,12,,0.0,Man,22,Computer Science,0.0,10,100,4,7,1,7,1,7,1,50,1,1,5ogs5ura,,,,,0
+13,folcs8ow,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.891871,1,,,944.44,13,,0.0,Woman,22,signal processing,4.0,5,5,47,5,6,7,2,7,1,100,1,1,5ogs5ura,,,,,0
+14,cfp8kvc9,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.907618,1,,,166.67,14,,0.0,Man,19,EEE,4.58,5,100,24,7,4,6,2,6,2,50,1,1,5ogs5ura,,,,,0
+15,tt26hkpl,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.004337,1,,,222.22,15,,0.0,Man,19,CBE,4.72,10,5,47,6,5,6,2,5,2,100,1,1,5ogs5ura,,,,,0
+16,jfy8jxqv,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:28.995970,1,,,888.89,16,,0.0,Woman,19,Economics,0.0,60,5,24,5,2,6,2,6,2,70,1,1,5ogs5ura,,,,,0
+17,eveqm1ww,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.059992,1,,,611.11,17,,0.0,Man,21,EEE,4.07,5,5,47,4,4,5,3,3,5,75,1,1,5ogs5ura,,,,,0
+18,1dtln5rg,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.088262,1,,,1388.89,18,,0.0,Man,19,Computer Science,0.0,5,5,47,7,1,7,1,7,1,100,1,1,5ogs5ura,,,,,0
+19,5ltpvdck,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.095601,1,,,500.0,19,,0.0,Man,19,CBE,4.7,5,5,47,7,1,7,1,7,1,100,1,1,5ogs5ura,,,,,0
+20,ic1ocjv5,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:30.086752,1,,,1222.22,20,,0.0,Man,28,Economics,3.0,5,5,47,4,4,4,4,4,4,100,1,1,5ogs5ura,,,,,0
+21,zd9eakrm,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.456622,1,,,722.22,21,,0.0,Man,20,EEE,0.0,5,5,47,6,4,4,2,6,5,100,1,1,5ogs5ura,,,,,0
+22,8tpz5m2a,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.516011,1,,,722.22,22,,0.0,Man,23,MAEO,4.43,5,5,47,7,6,7,6,7,1,50,1,1,5ogs5ura,,,,,0
+23,wfmdx2nb,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.865656,1,,,833.33,23,,0.0,Man,19,computer science,5.0,5,5,47,2,3,3,2,5,3,75,1,1,5ogs5ura,,,,,0
+24,y40upi5t,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:29.980971,1,,,944.44,24,,0.0,Woman,19,Electrical and Electronic Engineering,3.9,5,5,47,6,5,7,1,6,3,100,1,1,5ogs5ura,,,,,0
+25,s6nkestj,,0,587,587,FinalPage,ThankYou,2026-09-16 05:16:30.425302,1,,,833.33,25,,0.0,Woman,20,chemical and biomolecular engineering ,3.5,50,5,47,7,7,7,1,7,1,100,1,1,5ogs5ura,,,,,0

@@ -1,0 +1,26 @@
+participant.id_in_session,participant.code,participant.label,participant._is_bot,participant._index_in_pages,participant._max_page_index,participant._current_app_name,participant._current_page_name,participant.time_started_utc,participant.visited,participant.mturk_worker_id,participant.mturk_assignment_id,participant.payoff,player.id_in_group,player.role,player.payoff,player.is_dictator,player.dictator_payoff,player.partner_id_in_group,player.task1_points,player.allocation_points,player.market_points,player.belief_points,player.total_combined_payoff,player.payment_sgd,group.id_in_subsession,subsession.round_number,session.code,session.label,session.mturk_HITId,session.mturk_HITGroupId,session.comment,session.is_demo
+1,fwrj2jat,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:00.628207,1,,,1222.22,1,,0.0,0,0.0,7,170.0,185.0,872.0,0.0,1227.0,24.0,1,1,gmregd6v,,,,,0
+2,0vigghqi,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.780536,1,,,1222.22,2,,50.0,0,50.0,11,200.0,195.0,787.0,0.0,1232.0,24.0,1,1,gmregd6v,,,,,0
+3,xu6xugdp,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.378175,1,,,1222.22,3,,100.0,1,100.0,17,300.0,175.0,673.0,0.0,1248.0,24.0,1,1,gmregd6v,,,,,0
+4,9nn00jux,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.401661,1,,,1333.33,4,,0.0,0,0.0,24,300.0,200.0,729.0,138.75,1367.75,26.0,1,1,gmregd6v,,,,,0
+5,d8azp69w,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.475325,1,,,722.22,5,,1.0,0,1.0,23,110.0,190.0,439.0,0.0,740.0,15.0,1,1,gmregd6v,,,,,0
+6,g5ct4rg0,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.961372,1,,,666.67,6,,100.0,1,100.0,20,180.0,139.0,302.0,0.0,721.0,14.0,1,1,gmregd6v,,,,,0
+7,utr109q6,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.583853,1,,,1555.56,7,,100.0,1,100.0,1,300.0,151.0,798.0,225.0,1574.0,30.0,1,1,gmregd6v,,,,,0
+8,uza1lz8f,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.005757,1,,,333.33,8,,0.0,0,0.0,22,150.0,136.0,90.0,0.0,376.0,8.0,1,1,gmregd6v,,,,,0
+9,3z6ed32t,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.137923,1,,,1277.78,9,,100.0,1,100.0,25,300.0,127.0,610.0,150.0,1287.0,25.0,1,1,gmregd6v,,,,,0
+10,pzsakpjx,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.187676,1,,,1333.33,10,,50.0,0,50.0,11,150.0,145.0,800.0,225.0,1370.0,26.0,1,1,gmregd6v,,,,,0
+11,h4hoh39u,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.274120,1,,,444.44,11,,50.0,1,50.0,10,75.0,67.5,300.0,0.0,492.5,10.0,1,1,gmregd6v,,,,,0
+12,jzoxfyc2,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.326008,1,,,500.0,12,,100.0,1,100.0,18,50.0,57.5,320.0,0.0,527.5,11.0,1,1,gmregd6v,,,,,0
+13,dqn940v4,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.334007,1,,,555.56,13,,0.0,0,0.0,19,80.0,66.25,420.0,0.0,566.25,12.0,1,1,gmregd6v,,,,,0
+14,5l1yk0gm,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.341168,1,,,555.56,14,,60.0,1,60.0,15,75.0,65.0,380.0,0.0,580.0,12.0,1,1,gmregd6v,,,,,0
+15,3fdg4ref,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.350239,1,,,0.0,15,,40.0,0,40.0,14,75.0,65.0,-170.0,0.0,10.0,2.0,1,1,gmregd6v,,,,,0
+16,iliayit3,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.416829,1,,,1277.78,16,,30.0,0,30.0,21,150.0,178.0,970.0,0.0,1328.0,25.0,1,1,gmregd6v,,,,,0
+17,hpzf5xgg,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.561629,1,,,777.78,17,,0.0,0,0.0,3,300.0,183.5,310.0,0.0,793.5,16.0,1,1,gmregd6v,,,,,0
+18,3th28718,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.393109,1,,,722.22,18,,0.0,0,0.0,12,200.0,156.0,400.0,0.0,756.0,15.0,1,1,gmregd6v,,,,,0
+19,hh695q6a,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.412245,1,,,1666.67,19,,100.0,1,100.0,13,167.0,163.7,1030.0,225.0,1685.7,32.0,1,1,gmregd6v,,,,,0
+20,2w7wmunp,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.631685,1,,,500.0,20,,0.0,0,0.0,6,160.0,167.0,190.0,0.0,517.0,11.0,1,1,gmregd6v,,,,,0
+21,2fon3kdf,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.788969,1,,,1444.44,21,,70.0,1,70.0,16,160.0,113.80000000000001,1153.0,0.0,1496.8,28.0,1,1,gmregd6v,,,,,0
+22,0vm37wcl,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.953754,1,,,1222.22,22,,100.0,1,100.0,8,130.0,127.0,877.0,0.0,1234.0,24.0,1,1,gmregd6v,,,,,0
+23,9902h2kd,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:06.025371,1,,,1166.67,23,,99.0,1,99.0,5,300.0,138.0,195.0,435.0,1167.0,23.0,1,1,gmregd6v,,,,,0
+24,snwy0w01,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:06.312161,1,,,722.22,24,,100.0,1,100.0,4,300.0,160.0,-37.0,225.0,748.0,15.0,1,1,gmregd6v,,,,,0
+25,yaickank,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:06.374332,1,,,444.44,25,,0.0,0,0.0,9,210.0,127.0,-88.0,221.25,470.25,10.0,1,1,gmregd6v,,,,,0

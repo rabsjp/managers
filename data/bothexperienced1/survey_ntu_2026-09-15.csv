@@ -1,0 +1,26 @@
+participant.id_in_session,participant.code,participant.label,participant._is_bot,participant._index_in_pages,participant._max_page_index,participant._current_app_name,participant._current_page_name,participant.time_started_utc,participant.visited,participant.mturk_worker_id,participant.mturk_assignment_id,participant.payoff,player.id_in_group,player.role,player.payoff,player.gender,player.age,player.major,player.gpa,player.crt_bat_ball,player.crt_machines,player.crt_lilypads,player.att_capable,player.att_aggressive,player.att_skills,player.att_competitive,player.att_pressure,player.att_emotional,player.dictator_keep,group.id_in_subsession,subsession.round_number,session.code,session.label,session.mturk_HITId,session.mturk_HITGroupId,session.comment,session.is_demo
+1,fwrj2jat,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:00.628207,1,,,1222.22,1,,0.0,Man,18,CS,4.2,10,20,47,7,1,7,5,7,1,50,1,1,gmregd6v,,,,,0
+2,0vigghqi,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.780536,1,,,1222.22,2,,0.0,Woman,18,Chemical and Biomolecular Engineering,0.0,5,5,36,7,3,7,2,6,3,100,1,1,gmregd6v,,,,,0
+3,xu6xugdp,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.378175,1,,,1222.22,3,,0.0,Man,18,CBE,0.0,0,5,47,4,4,4,4,4,4,100,1,1,gmregd6v,,,,,0
+4,9nn00jux,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.401661,1,,,1333.33,4,,0.0,Man,20,eee,4.2,5,3,47,4,4,4,4,4,4,100,1,1,gmregd6v,,,,,0
+5,d8azp69w,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.475325,1,,,722.22,5,,0.0,Man,19,Mathematics and Economics,4.03,5,100,47,7,5,5,4,7,1,50,1,1,gmregd6v,,,,,0
+6,g5ct4rg0,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.961372,1,,,666.67,6,,0.0,Man,20,civil engineering,4.0,5,5,36,4,5,4,5,6,3,100,1,1,gmregd6v,,,,,0
+7,utr109q6,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:02.583853,1,,,1555.56,7,,0.0,Man,20,MSE,4.5,5,5,47,7,2,7,2,7,2,100,1,1,gmregd6v,,,,,0
+8,uza1lz8f,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.005757,1,,,333.33,8,,0.0,Man,22,Computer Engineering,4.29,5,5,47,3,5,7,1,5,3,100,1,1,gmregd6v,,,,,0
+9,3z6ed32t,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.137923,1,,,1277.78,9,,0.0,Man,21,Computer Engineering,0.0,5,5,47,7,3,7,1,7,3,100,1,1,gmregd6v,,,,,0
+10,pzsakpjx,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.187676,1,,,1333.33,10,,0.0,Woman,19,Civil Engineering,3.54,5,5,47,7,3,7,5,7,1,100,1,1,gmregd6v,,,,,0
+11,h4hoh39u,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.274120,1,,,444.44,11,,0.0,Woman,16,Environmental Engineering,0.0,5,5,47,7,4,7,1,7,2,50,1,1,gmregd6v,,,,,0
+12,jzoxfyc2,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.326008,1,,,500.0,12,,0.0,Man,24,Computer Engineering,4.23,5,5,47,7,6,6,2,6,3,100,1,1,gmregd6v,,,,,0
+13,dqn940v4,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.334007,1,,,555.56,13,,0.0,Man,19,BASA,4.0,5,5,47,4,3,4,3,5,4,60,1,1,gmregd6v,,,,,0
+14,5l1yk0gm,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.341168,1,,,555.56,14,,0.0,Man,19,civil engineering ,3.5,10,5,36,6,5,7,4,4,3,60,1,1,gmregd6v,,,,,0
+15,3fdg4ref,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.350239,1,,,0.0,15,,0.0,Woman,19,CBE,3.5,5,5,47,6,4,6,3,6,3,50,1,1,gmregd6v,,,,,0
+16,iliayit3,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.416829,1,,,1277.78,16,,0.0,Man,19,data science,0.0,5,5,47,4,4,5,4,4,4,100,1,1,gmregd6v,,,,,0
+17,hpzf5xgg,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:03.561629,1,,,777.78,17,,0.0,Woman,19,communication studies,0.0,5,1,24,7,1,7,1,7,1,100,1,1,gmregd6v,,,,,0
+18,3th28718,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.393109,1,,,722.22,18,,0.0,Woman,19,Information Engineering and Media,0.0,3,5,24,7,1,7,1,7,1,100,1,1,gmregd6v,,,,,0
+19,hh695q6a,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.412245,1,,,1666.67,19,,0.0,Man,20,Sociology,0.0,5,5,47,7,5,7,5,7,1,100,1,1,gmregd6v,,,,,0
+20,2w7wmunp,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.631685,1,,,500.0,20,,0.0,Woman,16,business,0.0,1,100,24,7,5,7,2,7,1,50,1,1,gmregd6v,,,,,0
+21,2fon3kdf,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.788969,1,,,1444.44,21,,0.0,Man,21,Acccountancy,5.0,5,5,47,7,1,6,1,7,2,70,1,1,gmregd6v,,,,,0
+22,0vm37wcl,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:05.953754,1,,,1222.22,22,,0.0,Woman,18,MATH,0.0,5,5,24,7,6,7,1,7,1,100,1,1,gmregd6v,,,,,0
+23,9902h2kd,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:06.025371,1,,,1166.67,23,,0.0,Man,19,Civil Engineering,4.0,5,5,47,7,6,7,1,7,5,99,1,1,gmregd6v,,,,,0
+24,snwy0w01,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:06.312161,1,,,722.22,24,,0.0,Man,22,CE,4.56,5,5,47,6,5,6,5,4,2,100,1,1,gmregd6v,,,,,0
+25,yaickank,,0,587,587,FinalPage,ThankYou,2026-09-15 04:46:06.374332,1,,,444.44,25,,0.0,Man,21,IEM ,0.0,5,5,47,7,6,7,6,6,3,56,1,1,gmregd6v,,,,,0

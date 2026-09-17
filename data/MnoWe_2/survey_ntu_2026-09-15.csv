@@ -1,0 +1,26 @@
+participant.id_in_session,participant.code,participant.label,participant._is_bot,participant._index_in_pages,participant._max_page_index,participant._current_app_name,participant._current_page_name,participant.time_started_utc,participant.visited,participant.mturk_worker_id,participant.mturk_assignment_id,participant.payoff,player.id_in_group,player.role,player.payoff,player.gender,player.age,player.major,player.gpa,player.crt_bat_ball,player.crt_machines,player.crt_lilypads,player.att_capable,player.att_aggressive,player.att_skills,player.att_competitive,player.att_pressure,player.att_emotional,player.dictator_keep,group.id_in_subsession,subsession.round_number,session.code,session.label,session.mturk_HITId,session.mturk_HITGroupId,session.comment,session.is_demo
+1,u4sl54xk,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:41.791289,1,,,500.0,1,,0.0,Man,18,Electrical and Electronic Engineering,0.0,5,5,47,6,2,6,3,6,4,50,1,1,9l3zlzfa,,,,,0
+2,q2jobopa,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:41.867553,1,,,222.22,2,,0.0,Man,19,Economics and Data Science,4.82,5,5,47,6,5,6,4,4,3,100,1,1,9l3zlzfa,,,,,0
+3,9xg7erl3,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.002021,1,,,611.11,3,,0.0,Woman,20,bio sci,4.5,5,5,47,7,4,7,4,1,1,100,1,1,9l3zlzfa,,,,,0
+4,ixl976y0,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.268005,1,,,722.22,4,,0.0,Woman,19,Economics and Data Science,0.0,5,5,47,6,4,7,3,7,2,80,1,1,9l3zlzfa,,,,,0
+5,nqlqeq8n,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.844534,1,,,333.33,5,,0.0,Woman,17,Materials Science and Engineering,0.0,5,100,47,6,5,6,3,6,2,50,1,1,9l3zlzfa,,,,,0
+6,d10dwe1h,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.881995,1,,,888.89,6,,0.0,Man,17,CS,0.0,5,100,30,6,6,6,6,6,6,60,1,1,9l3zlzfa,,,,,0
+7,0yq0zebw,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.904428,1,,,833.33,7,,0.0,Man,19,MSE,4.1,5,5,47,6,3,6,2,6,2,100,1,1,9l3zlzfa,,,,,0
+8,7sfhy51b,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.911674,1,,,222.22,8,,0.0,Man,18,CS,3.8,5,5,47,4,4,6,3,4,4,60,1,1,9l3zlzfa,,,,,0
+9,pgjj4tqg,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.950755,1,,,611.11,9,,0.0,Woman,19,Economics and Data Science,0.0,5,5,47,6,2,7,1,5,2,50,1,1,9l3zlzfa,,,,,0
+10,z4s8evj8,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:42.968291,1,,,1055.56,10,,0.0,Woman,17,economics and data science,0.0,5,5,3,7,7,7,7,6,1,50,1,1,9l3zlzfa,,,,,0
+11,e8h7gvii,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.019580,1,,,722.22,11,,0.0,Woman,18,Bioengineering,0.0,5,5,24,7,5,6,4,6,2,50,1,1,9l3zlzfa,,,,,0
+12,yt1cbpza,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.042844,1,,,1277.78,12,,0.0,Woman,18,Biological Sciences,0.0,5,5,47,7,5,7,1,7,1,100,1,1,9l3zlzfa,,,,,0
+13,0i38ht6y,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.050304,1,,,444.44,13,,0.0,Woman,19,Economics and Data Science,4.5,5,5,47,7,6,7,1,7,2,50,1,1,9l3zlzfa,,,,,0
+14,xyqf41ao,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.059770,1,,,55.56,14,,0.0,Woman,18,business,4.0,10,100,24,7,5,7,2,7,1,71,1,1,9l3zlzfa,,,,,0
+15,g9pquzkd,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.154158,1,,,0.0,15,,0.0,Man,26,EEE,2.9,10,100,24,7,4,7,2,6,4,90,1,1,9l3zlzfa,,,,,0
+16,7ww48hi4,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.242303,1,,,0.0,16,,0.0,Woman,19,Information engineering and media,0.0,5,100,47,7,5,7,1,7,1,90,1,1,9l3zlzfa,,,,,0
+17,5fdw0rg1,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.252356,1,,,0.0,17,,0.0,Woman,18,EEE,0.0,5,5,47,4,4,6,2,6,2,70,1,1,9l3zlzfa,,,,,0
+18,h7o9v437,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.348539,1,,,0.0,18,,0.0,Woman,21,ENVIRONMENTAL ENGINEERING,4.5,5,5,47,7,4,7,1,6,1,100,1,1,9l3zlzfa,,,,,0
+19,9mimenbo,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.388352,1,,,833.33,19,,0.0,Woman,19,Accounting,4.8,5,10,47,7,1,7,1,7,1,50,1,1,9l3zlzfa,,,,,0
+20,hn8non3y,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.459728,1,,,1666.67,20,,0.0,Man,22,Mechanical Engineering,4.58,5,5,47,5,5,5,5,3,5,100,1,1,9l3zlzfa,,,,,0
+21,x06ipo6j,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.651142,1,,,500.0,21,,0.0,Woman,19,Business,0.0,10,5,47,4,4,5,1,7,1,85,1,1,9l3zlzfa,,,,,0
+22,n9iynxtq,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.760292,1,,,944.44,22,,0.0,Man,20,Economics and Data Science,5.0,5,5,47,7,4,6,4,4,3,50,1,1,9l3zlzfa,,,,,0
+23,diqkyqqr,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:43.834949,1,,,1277.78,23,,0.0,Man,22,ME,4.5,5,5,47,3,5,3,5,3,5,50,1,1,9l3zlzfa,,,,,0
+24,hi0vl1bf,,0,587,587,FinalPage,ThankYou,2026-09-15 02:15:44.110312,1,,,222.22,24,,0.0,Man,21,Bioengineering,4.28,5,5,47,7,1,7,1,7,1,100,1,1,9l3zlzfa,,,,,0
+25,u3a33dgt,,0,587,587,FinalPage,ThankYou,2026-09-15 02:16:14.753308,1,,,1277.78,25,,0.0,Man,19,Mechanical Engineering,5.0,10,5,47,4,4,4,4,4,4,100,1,1,9l3zlzfa,,,,,0

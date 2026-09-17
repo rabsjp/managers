@@ -1,0 +1,26 @@
+participant.id_in_session,participant.code,participant.label,participant._is_bot,participant._index_in_pages,participant._max_page_index,participant._current_app_name,participant._current_page_name,participant.time_started_utc,participant.visited,participant.mturk_worker_id,participant.mturk_assignment_id,participant.payoff,player.id_in_group,player.role,player.payoff,player.is_dictator,player.dictator_payoff,player.partner_id_in_group,player.task1_points,player.allocation_points,player.market_points,player.belief_points,player.total_combined_payoff,player.payment_sgd,group.id_in_subsession,subsession.round_number,session.code,session.label,session.mturk_HITId,session.mturk_HITGroupId,session.comment,session.is_demo
+1,msd1f2iu,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:45.221358,1,,,388.89,1,,20.0,0,20.0,14,80.0,66.0,225.0,0.0,391.0,9.0,1,1,ckhtfa5u,,,,,0
+2,omrf04k4,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:45.274669,1,,,388.89,2,,25.0,0,25.0,25,50.0,60.0,300.0,0.0,435.0,9.0,1,1,ckhtfa5u,,,,,0
+3,duzxv1is,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:45.347404,1,,,611.11,3,,1.0,0,1.0,17,65.0,59.0,475.0,37.5,637.5,13.0,1,1,ckhtfa5u,,,,,0
+4,znk2pevv,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:45.967994,1,,,500.0,4,,30.0,0,30.0,20,0.0,60.0,337.5,75.0,502.5,11.0,1,1,ckhtfa5u,,,,,0
+5,rv5b38em,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.164104,1,,,444.44,5,,5.0,0,5.0,15,75.0,65.0,287.5,37.5,470.0,10.0,1,1,ckhtfa5u,,,,,0
+6,z7t2lpyk,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.247250,1,,,666.67,6,,80.0,1,80.0,24,80.0,69.9,490.0,0.0,719.9,14.0,1,1,ckhtfa5u,,,,,0
+7,dwx0my9x,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.305699,1,,,1166.67,7,,70.0,1,70.0,11,0.0,82.5,950.0,90.0,1192.5,23.0,1,1,ckhtfa5u,,,,,0
+8,uhxz6pjz,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.338399,1,,,1388.89,8,,100.0,1,100.0,22,75.0,82.5,1060.0,93.75,1411.25,27.0,1,1,ckhtfa5u,,,,,0
+9,r39x605k,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.369519,1,,,55.56,9,,20.0,0,20.0,12,50.0,80.75,-60.0,0.0,90.75,3.0,1,1,ckhtfa5u,,,,,0
+10,yhliw46v,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.359571,1,,,277.78,10,,20.0,0,20.0,14,80.0,82.5,60.0,82.5,325.0,7.0,1,1,ckhtfa5u,,,,,0
+11,7abl389c,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.377075,1,,,666.67,11,,30.0,0,30.0,7,300.0,150.0,200.0,0.0,680.0,14.0,1,1,ckhtfa5u,,,,,0
+12,6kns3oml,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.391218,1,,,1000.0,12,,80.0,1,80.0,9,150.0,150.0,440.0,225.0,1045.0,20.0,1,1,ckhtfa5u,,,,,0
+13,pp2e4xx5,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.398329,1,,,1333.33,13,,50.0,1,50.0,21,115.0,150.6,610.0,450.0,1375.6,26.0,1,1,ckhtfa5u,,,,,0
+14,jid9ui4f,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.405738,1,,,1055.56,14,,80.0,1,80.0,1,180.0,162.0,640.0,0.0,1062.0,21.0,1,1,ckhtfa5u,,,,,0
+15,grwzfvbr,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.413971,1,,,1166.67,15,,95.0,1,95.0,5,115.0,150.0,810.0,0.0,1170.0,23.0,1,1,ckhtfa5u,,,,,0
+16,yxcpp681,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.537902,1,,,1444.44,16,,0.0,0,0.0,23,150.0,148.0,1025.0,150.0,1473.0,28.0,1,1,ckhtfa5u,,,,,0
+17,09bse981,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.585925,1,,,833.33,17,,99.0,1,99.0,3,133.0,157.6,450.0,0.0,839.6,17.0,1,1,ckhtfa5u,,,,,0
+18,2p0bevly,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.888819,1,,,888.89,18,,100.0,1,100.0,19,160.0,150.0,450.0,37.5,897.5,18.0,1,1,ckhtfa5u,,,,,0
+19,raavz353,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.924962,1,,,1055.56,19,,0.0,0,0.0,18,160.0,142.79999999999998,775.0,0.0,1077.8,21.0,1,1,ckhtfa5u,,,,,0
+20,6rdutaoz,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.739461,1,,,1333.33,20,,70.0,1,70.0,4,125.0,142.0,1050.0,0.0,1387.0,26.0,1,1,ckhtfa5u,,,,,0
+21,21anldsa,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:46.764965,1,,,1000.0,21,,50.0,0,50.0,13,50.0,72.5,880.0,0.0,1052.5,20.0,1,1,ckhtfa5u,,,,,0
+22,3mjtjuou,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:47.087780,1,,,555.56,22,,0.0,0,0.0,8,80.0,74.0,430.0,0.0,584.0,12.0,1,1,ckhtfa5u,,,,,0
+23,5jtwpe9d,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:47.162759,1,,,333.33,23,,100.0,1,100.0,16,90.0,72.5,52.5,37.5,352.5,8.0,1,1,ckhtfa5u,,,,,0
+24,s16bmsk2,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:47.283007,1,,,666.67,24,,20.0,0,20.0,6,90.0,72.5,522.5,0.0,705.0,14.0,1,1,ckhtfa5u,,,,,0
+25,sjw641j3,,0,587,587,FinalPage,ThankYou,2026-09-16 07:14:49.282695,1,,,277.78,25,,75.0,1,75.0,2,55.0,71.5,-210.0,300.0,291.5,7.0,1,1,ckhtfa5u,,,,,0
