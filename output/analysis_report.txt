@@ -1,0 +1,211 @@
+
+========================================================================
+PART 1 - Allocation to the manager (task 1): EXP vs NO
+========================================================================
+player.allocation is on the 0-100 scale of player.mgr_p1; the two manager
+allocations sum to 100 for each participant. A value of 50 = an unbiased 50/50 split.
+
+-- player.allocation to the EXPERIENCED manager vs. 50 (=.5 share) (n = 200) --
+   mean = 71.87, sd = 14.29
+   one-sample t-test:   t(199) = 21.64, p = 0.0000, 95% CI = [69.88, 73.86]
+   Wilcoxon signed-rank: V = 17488, p = 0.0000
+
+-- player.allocation: EXP vs NO (paired, n = 200 participants) --
+   mean(exp) = 71.87, mean(no) = 28.13, mean diff (exp-no) = 43.74
+   paired t-test:       t(199) = 21.64, p = 0.0000, 95% CI = [39.75, 47.73]
+   Wilcoxon signed-rank: V = 17488, p = 0.0000
+
+-- player.allocation to the M_exp_W_exp manager vs. 50 (=.5 share) (n = 50) --
+   mean = 50.56, sd = 16.91
+   one-sample t-test:   t(49) = 0.23, p = 0.8158, 95% CI = [45.75, 55.37]
+   Wilcoxon signed-rank: V = 206, p = 0.9454
+
+-- player.allocation to the M_exp_W_exp manager vs. 50 (=.5 share) (n = 50) --
+   mean = 48.56, sd = 15.38
+   one-sample t-test:   t(49) = -0.66, p = 0.5111, 95% CI = [44.19, 52.93]
+   Wilcoxon signed-rank: V = 150, p = 0.5327
+
+-- player.allocation to the M_exp_W_exp manager vs. 50 (=.5 share) (n = 50) --
+   mean = 29.18, sd = 13.37
+   one-sample t-test:   t(49) = -11.01, p = 0.0000, 95% CI = [25.38, 32.98]
+   Wilcoxon signed-rank: V = 4, p = 0.0000
+
+-- player.allocation to the M_exp_W_exp manager vs. 50 (=.5 share) (n = 50) --
+   mean = 68.14, sd = 15.56
+   one-sample t-test:   t(49) = 8.25, p = 0.0000, 95% CI = [63.72, 72.56]
+   Wilcoxon signed-rank: V = 1196, p = 0.0000
+
+========================================================================
+PART 2 - Round-1 beliefs: EXP vs NO manager (no group dependence)
+========================================================================
+
+-- player.belief_inv: EXP vs NO (paired, n = 200 participants) --
+   mean(exp) = 118.99, mean(no) = 82.45, mean diff (exp-no) = 36.54
+   paired t-test:       t(199) = 9.20, p = 0.0000, 95% CI = [28.71, 44.37]
+   Wilcoxon signed-rank: V = 13642, p = 0.0000
+
+-- player.belief_price: EXP vs NO (paired, n = 200 participants) --
+   mean(exp) = 335.83, mean(no) = 214.35, mean diff (exp-no) = 121.49
+   paired t-test:       t(199) = 12.95, p = 0.0000, 95% CI = [102.98, 139.99]
+   Wilcoxon signed-rank: V = 15658, p = 0.0000
+
+-- player.belief_others_inv: EXP vs NO (paired, n = 200 participants) --
+   mean(exp) = 121.83, mean(no) = 81.07, mean diff (exp-no) = 40.76
+   paired t-test:       t(199) = 9.41, p = 0.0000, 95% CI = [32.21, 49.30]
+   Wilcoxon signed-rank: V = 13807, p = 0.0000
+
+-- player.belief_others_price: EXP vs NO (paired, n = 200 participants) --
+   mean(exp) = 348.56, mean(no) = 215.56, mean diff (exp-no) = 133.00
+   paired t-test:       t(199) = 12.85, p = 0.0000, 95% CI = [112.58, 153.42]
+   Wilcoxon signed-rank: V = 14990, p = 0.0000
+
+========================================================================
+PART 3 - Rounds 1-10 repeated market: BID (group-clustered) and TRADE (plain), EXP vs NO
+========================================================================
+
+-- player.bid (rounds 1-10) across managers, GROUP-CLUSTERED (2 manager level(s), n = 4000 rounds x participants, 40 groups) --
+
+-- player.bid (rounds 1-10) (raw, unclustered descriptives): descriptives by manager --
+ manager    n     mean        sd median min max
+      no 2000 137.2000  79.23377    120   1 599
+     exp 2000 297.2365 137.10639    300   1 599
+   Mixed model (random intercepts: group_uid / participant): F(1,3799) = 2881.03, p = 0.0000
+   Variance components:             Variance     StdDev   | group_uid = pdLogChol(1)          | (Intercept) 2356.189     48.54059 | pid =       pdLogChol(1)          | (Intercept) 1355.981     36.82365 | Residual    8889.766     94.28555
+   contrast exp - no: estimate = 160.04, SE = 2.98, p = 0.0000
+
+-- player.trade (participant-level mean over rounds 1-10): EXP vs NO (paired, n = 200 participants) --
+   mean(exp) = 0.00, mean(no) = -0.00, mean diff (exp-no) = -0.00
+   paired t-test:       t(199) = -0.00, p = 1.0000, 95% CI = [-0.09, 0.09]
+   Wilcoxon signed-rank: V = 8477, p = 0.9641
+
+========================================================================
+PART 4 - Round-11 beliefs across the 4 manager identities (no group dependence)
+========================================================================
+
+-- player.belief_inv across managers (4 manager level(s) present) --
+
+-- player.belief_inv: descriptives by manager --
+ manager   n   mean       sd median min max
+   M_exp 100 121.44 44.91953  120.0  20 200
+    M_no 100  91.92 41.10904  100.0  10 200
+   W_exp 100 128.54 40.64342  125.0  29 200
+    W_no 100  86.97 41.15417   82.5  10 200
+   One-way ANOVA: F(3,396) = 24.59, p = 0.0000
+   Kruskal-Wallis: chi-sq(3) = 65.89, p = 0.0000
+   -> pairwise comparisons (Welch t-tests, BH-adjusted p-values):
+
+	Pairwise comparisons using t tests with non-pooled SD 
+
+data:  sub$y and sub$manager 
+
+      M_exp   M_no    W_exp  
+M_no  3.8e-06 -       -      
+W_exp 0.29    4.7e-09 -      
+W_no  1.1e-07 0.40    7.9e-11
+
+P value adjustment method: BH 
+
+-- player.belief_price across managers (4 manager level(s) present) --
+
+-- player.belief_price: descriptives by manager --
+ manager   n   mean       sd median min max
+   M_exp 100 303.48 134.0103  300.0  75 600
+    M_no 100 186.15 105.4561  150.0   1 500
+   W_exp 100 320.19 142.7957  300.0 100 600
+    W_no 100 209.89 112.7075  168.5   1 550
+   One-way ANOVA: F(3,396) = 28.68, p = 0.0000
+   Kruskal-Wallis: chi-sq(3) = 71.02, p = 0.0000
+   -> pairwise comparisons (Welch t-tests, BH-adjusted p-values):
+
+	Pairwise comparisons using t tests with non-pooled SD 
+
+data:  sub$y and sub$manager 
+
+      M_exp   M_no    W_exp  
+M_no  2.6e-10 -       -      
+W_exp 0.39    1.2e-11 -      
+W_no  3.8e-07 0.15    1.4e-08
+
+P value adjustment method: BH 
+
+-- player.belief_others_inv across managers (4 manager level(s) present) --
+
+-- player.belief_others_inv: descriptives by manager --
+ manager   n   mean       sd median min max
+   M_exp 100 123.87 42.42275  126.0  23 200
+    M_no 100  85.94 36.66359   98.0   0 180
+   W_exp 100 127.51 40.08413  129.0  30 200
+    W_no 100  85.59 38.23006   87.5  10 185
+   One-way ANOVA: F(3,396) = 34.36, p = 0.0000
+   Kruskal-Wallis: chi-sq(3) = 86.60, p = 0.0000
+   -> pairwise comparisons (Welch t-tests, BH-adjusted p-values):
+
+	Pairwise comparisons using t tests with non-pooled SD 
+
+data:  sub$y and sub$manager 
+
+      M_exp   M_no    W_exp  
+M_no  3.1e-10 -       -      
+W_exp 0.64    4.2e-12 -      
+W_no  3.2e-10 0.95    4.2e-12
+
+P value adjustment method: BH 
+
+-- player.belief_others_price across managers (4 manager level(s) present) --
+
+-- player.belief_others_price: descriptives by manager --
+ manager   n   mean       sd median min max
+   M_exp 100 311.45 137.4840  300.0 100 600
+    M_no 100 186.04 109.8887  171.0   1 500
+   W_exp 100 321.30 139.4951  300.0 100 600
+    W_no 100 204.28 108.6493  182.5  50 550
+   One-way ANOVA: F(3,396) = 31.94, p = 0.0000
+   Kruskal-Wallis: chi-sq(3) = 79.16, p = 0.0000
+   -> pairwise comparisons (Welch t-tests, BH-adjusted p-values):
+
+	Pairwise comparisons using t tests with non-pooled SD 
+
+data:  sub$y and sub$manager 
+
+      M_exp   M_no    W_exp  
+M_no  6.4e-11 -       -      
+W_exp 0.62    7.4e-12 -      
+W_no  8.2e-09 0.29    7.5e-10
+
+P value adjustment method: BH 
+
+========================================================================
+PART 5 - Rounds 11-20 repeated market: BID (group-clustered) and TRADE (plain) across manager identities
+========================================================================
+
+-- player.bid (rounds 11-20) across managers, GROUP-CLUSTERED (4 manager level(s), n = 4000 rounds x participants, 40 groups) --
+
+-- player.bid (rounds 11-20) (raw, unclustered descriptives): descriptives by manager --
+ manager    n    mean        sd median min max
+   M_exp 1000 237.511 113.34875    243   1 599
+    M_no 1000 141.436  88.18042    120   1 595
+   W_exp 1000 264.056 146.36635    240   1 599
+    W_no 1000 161.333  95.02977    149   1 599
+   Mixed model (random intercepts: group_uid / participant): F(3,3797) = 748.76, p = 0.0000
+   Variance components:             Variance     StdDev   | group_uid = pdLogChol(1)          | (Intercept) 5543.849     74.45703 | pid =       pdLogChol(1)          | (Intercept) 1886.147     43.42979 | Residual    6783.688     82.36314
+   -> pairwise contrasts from the mixed model (each row refits with a different reference level):
+      contrast estimate    se  p_raw   p_BH
+  M_no - M_exp   -96.08 23.42 0.0002 0.0003
+ W_exp - M_exp     6.83  4.73 0.1495 0.1495
+  W_no - M_exp  -140.70  4.24 0.0000 0.0000
+  W_exp - M_no   197.85  5.64 0.0000 0.0000
+   W_no - M_no    27.20  3.82 0.0000 0.0000
+  W_no - W_exp  -102.72 26.92 0.0005 0.0006
+
+-- player.trade (participant-level mean over rounds 11-20) across managers (4 manager level(s) present) --
+
+-- player.trade (participant-level mean over rounds 11-20): descriptives by manager --
+ manager   n          mean        sd median min max
+   M_exp 100 -2.664535e-17 0.5515817    0.0  -1   1
+    M_no 100 -8.881784e-18 0.5621028    0.0  -1   1
+   W_exp 100  0.000000e+00 0.5935682    0.0  -1   1
+    W_no 100  2.775558e-18 0.5663992    0.1  -1   1
+   One-way ANOVA: F(3,396) = 0.00, p = 1.0000
+   Kruskal-Wallis: chi-sq(3) = 0.01, p = 0.9998
+
+Plots written to /Users/2924281/Desktop/jotarepos/managers/output/plots
