@@ -27,7 +27,8 @@
 # ============================================================
 
 library(nlme)
-library(dplyr)
+# Base R only -- no dplyr dependency (kept out so the script runs in a
+# plain R install with no internet access to CRAN).
 repo_root <- {
   cand <- c(getwd(), "/home/claude/managers")
   cand[which(sapply(cand, function(x) dir.exists(file.path(x, "data"))))[1]]
@@ -46,15 +47,15 @@ fmt <- function(x, d = 2) formatC(x, digits = d, format = "f")
 # ------------------------------------------------------------------
 # Descriptives by manager level
 # ------------------------------------------------------------------
-describe_by_manager <- function(df, var, label = var) {
-  tab <- do.call(rbind, lapply(split(df[[var]], df$manager), function(v) {
+describe_by_manager <- function(df, var, label = var, group_col = "manager") {
+  tab <- do.call(rbind, lapply(split(df[[var]], df[[group_col]]), function(v) {
     v <- v[!is.na(v)]
     if (length(v) == 0) return(data.frame(n = 0, mean = NA, sd = NA, median = NA, min = NA, max = NA))
     data.frame(n = length(v), mean = mean(v), sd = sd(v), median = median(v), min = min(v), max = max(v))
   }))
-  tab <- cbind(manager = rownames(tab), tab); rownames(tab) <- NULL
+  tab <- cbind(setNames(list(rownames(tab)), group_col), tab); rownames(tab) <- NULL
   tab <- tab[tab$n > 0, , drop = FALSE]
-  say(sprintf("\n-- %s: descriptives by manager --", label))
+  say(sprintf("\n-- %s: descriptives by %s --", label, group_col))
   say(paste(capture.output(print(tab, row.names = FALSE)), collapse = "\n"))
   tab
 }
@@ -107,14 +108,14 @@ compare_across_manager_plain <- function(df, var, label = var) {
   say(sprintf("\n-- %s across managers (%d manager level(s) present) --", label, n_groups))
   tab <- describe_by_manager(sub, "y", label = label)
   if (n_groups < 2) { say("   only one manager level has data; no comparison possible."); return(invisible(list(tab = tab))) }
-
+  
   aov_fit <- aov(y ~ manager, data = sub)
   aov_s <- summary(aov_fit)[[1]]
   say(sprintf("   One-way ANOVA: F(%d,%d) = %s, p = %s",
               aov_s$Df[1], aov_s$Df[2], fmt(aov_s$`F value`[1]), fmt(aov_s$`Pr(>F)`[1], 4)))
   kw <- kruskal.test(y ~ manager, data = sub)
   say(sprintf("   Kruskal-Wallis: chi-sq(%d) = %s, p = %s", kw$parameter, fmt(kw$statistic), fmt(kw$p.value, 4)))
-
+  
   if (n_groups > 2 && (aov_s$`Pr(>F)`[1] < 0.10 || kw$p.value < 0.10)) {
     say("   -> pairwise comparisons (Welch t-tests, BH-adjusted p-values):")
     pw <- pairwise.t.test(sub$y, sub$manager, p.adjust.method = "BH", pool.sd = FALSE)
@@ -139,7 +140,7 @@ compare_across_manager_clustered <- function(df, var, label = var) {
               label, n_groups, nrow(sub), nlevels(sub$group_uid)))
   tab <- describe_by_manager(sub, "y", label = paste0(label, " (raw, unclustered descriptives)"))
   if (n_groups < 2) { say("   only one manager level has data; no comparison possible."); return(invisible(list(tab = tab))) }
-
+  
   fit <- tryCatch(
     lme(y ~ manager, random = ~1 | group_uid/pid, data = sub, method = "REML",
         control = lmeControl(opt = "optim", msMaxIter = 200)),
@@ -154,7 +155,7 @@ compare_across_manager_clustered <- function(df, var, label = var) {
               a$numDF[2], a$denDF[2], fmt(a$`F-value`[2]), fmt(a[["p-value"]][2], 4)))
   vc <- VarCorr(fit)
   say(paste("   Variance components:", paste(capture.output(print(vc)), collapse = " | ")))
-
+  
   levs <- levels(sub$manager)
   if (n_groups > 2) {
     say("   -> pairwise contrasts from the mixed model (each row refits with a different reference level):")
@@ -186,6 +187,76 @@ compare_across_manager_clustered <- function(df, var, label = var) {
   invisible(list(tab = tab, fit = fit, anova = a))
 }
 
+# ------------------------------------------------------------------
+# GENDER comparisons: does the PARTICIPANT's own gender (player.gender,
+# Man/Woman) predict a different allocation / belief / bid, checked
+# separately WITHIN each manager level so a participant is never
+# compared against themselves and each row is one participant's single
+# observation for that manager (no repeated-measure pseudo-replication).
+# Plain version (independent two-sample t-test + Wilcoxon rank-sum) for
+# allocation / beliefs / trade; clustered version (group_uid/participant
+# mixed model) for bid, for the same group-dependence reason as before.
+# ------------------------------------------------------------------
+gender_by_manager_plain <- function(df, var, label = var) {
+  say(sprintf("\n-- %s by participant GENDER, within each manager level --", label))
+  levs <- levels(droplevels(factor(df$manager)))
+  rows <- list()
+  for (l in levs) {
+    sub <- df[df$manager == l & !is.na(df[[var]]) & !is.na(df$player.gender), ]
+    if (nrow(sub) == 0) next
+    x <- sub[[var]][sub$player.gender == "Man"]
+    y <- sub[[var]][sub$player.gender == "Woman"]
+    if (length(x) < 2 || length(y) < 2) next
+    tt <- t.test(x, y)
+    wt <- tryCatch(wilcox.test(x, y), error = function(e) NULL)
+    rows[[length(rows) + 1]] <- data.frame(
+      manager = l, n_man = length(x), n_woman = length(y),
+      mean_man = mean(x), mean_woman = mean(y), diff_man_minus_woman = mean(x) - mean(y),
+      t = tt$statistic, p_t = tt$p.value, p_wilcox = if (!is.null(wt)) wt$p.value else NA
+    )
+  }
+  if (!length(rows)) { say("   no manager level had both genders present with n>=2."); return(invisible(NULL)) }
+  tab <- do.call(rbind, rows)
+  disp <- tab
+  for (cc in c("mean_man", "mean_woman", "diff_man_minus_woman", "t")) disp[[cc]] <- fmt(disp[[cc]])
+  for (cc in c("p_t", "p_wilcox")) disp[[cc]] <- fmt(disp[[cc]], 4)
+  say(paste(capture.output(print(disp, row.names = FALSE)), collapse = "\n"))
+  invisible(tab)
+}
+
+gender_by_manager_clustered <- function(df, var, label = var) {
+  say(sprintf("\n-- %s by participant GENDER, GROUP-CLUSTERED, within each manager level --", label))
+  levs <- levels(droplevels(factor(df$manager)))
+  rows <- list()
+  for (l in levs) {
+    sub <- df[df$manager == l & !is.na(df[[var]]) & !is.na(df$player.gender), ]
+    if (nrow(sub) == 0) next
+    sub$gender    <- factor(sub$player.gender, levels = c("Man", "Woman"))
+    sub$group_uid <- factor(sub$group_uid)
+    sub$pid       <- factor(sub$participant.code)
+    if (nlevels(droplevels(sub$gender)) < 2) next
+    fit <- tryCatch(
+      lme(as.formula(paste(var, "~ gender")), random = ~1 | group_uid/pid, data = sub, method = "REML",
+          control = lmeControl(opt = "optim", msMaxIter = 200)),
+      error = function(e) e
+    )
+    if (inherits(fit, "error")) { say(sprintf("   [%s] mixed model failed (%s)", l, conditionMessage(fit))); next }
+    s <- summary(fit)$tTable
+    rows[[length(rows) + 1]] <- data.frame(
+      manager = l, n_obs = nrow(sub),
+      n_man = sum(sub$gender == "Man"), n_woman = sum(sub$gender == "Woman"),
+      estimate_woman_minus_man = -s[2, "Value"], se = s[2, "Std.Error"], p = s[2, "p-value"]
+    )
+  }
+  if (!length(rows)) { say("   no manager level could be fit."); return(invisible(NULL)) }
+  tab <- do.call(rbind, rows)
+  disp <- tab
+  for (cc in c("estimate_woman_minus_man", "se")) disp[[cc]] <- fmt(disp[[cc]])
+  disp$p <- fmt(disp$p, 4)
+  say(paste(capture.output(print(disp, row.names = FALSE)), collapse = "\n"))
+  invisible(tab)
+}
+
 # ==================================================================
 # PART 1 - Task-1 allocation (player.allocation), manager in {exp, no}
 # ==================================================================
@@ -209,15 +280,12 @@ exp_MW_en_share <- alloc_long$player.allocation[alloc_long$manager == "M_exp" &
                                                   alloc_long$player.treatment == "M_exp_W_no"]
 
 plot_levels <- c("exp_no", "M_exp_W_exp", "M_exp_W_no", "W_exp_M_no", "M_no_W_no")
-alloc_long <- alloc_long %>%
-  mutate(
-    manager_plot = factor(case_when(
-      manager == "exp" ~ "exp_no",
-      manager == "W_exp" & player.treatment == "M_no_W_exp" ~ "W_exp_M_no",
-      manager %in% c("M_exp", "M_no") ~ player.treatment
-    )),
-    manager_plot = factor(manager_plot, levels = plot_levels)    
-    )
+alloc_long$manager_plot <- with(alloc_long, ifelse(
+  manager == "exp", "exp_no",
+  ifelse(manager == "W_exp" & player.treatment == "M_no_W_exp", "W_exp_M_no",
+         ifelse(manager %in% c("M_exp", "M_no"), as.character(player.treatment), NA_character_))
+))
+alloc_long$manager_plot <- factor(alloc_long$manager_plot, levels = plot_levels)
 
 
 one_sample_vs(exp_MW_ee_share, 50, "player.allocation to the M_exp_W_exp manager vs. 50 (=.5 share)")
@@ -253,6 +321,39 @@ trade_agg_lr <- aggregate(player.trade ~ participant.code + manager, data = bidt
 compare_across_manager_plain(trade_agg_lr, "player.trade", "player.trade (participant-level mean over rounds 11-20)")
 
 # ==================================================================
+# PART 6 - Gender (participant.gender: Man vs Woman) and ALLOCATION
+# ==================================================================
+hr("PART 6 - Do Man vs Woman participants allocate differently?")
+say(sprintf("Sample: %d Man, %d Woman (of %d participants with a survey match).",
+            sum(alloc_long$player.gender[!duplicated(alloc_long$participant.code)] == "Man", na.rm = TRUE),
+            sum(alloc_long$player.gender[!duplicated(alloc_long$participant.code)] == "Woman", na.rm = TRUE),
+            length(unique(alloc_long$participant.code))))
+gender_by_manager_plain(alloc_long, "player.allocation", "player.allocation")
+
+# ==================================================================
+# PART 7 - Gender and BELIEFS (round 1 exp/no, round 11 identity)
+# ==================================================================
+hr("PART 7 - Do Man vs Woman participants hold different beliefs?")
+say("-- round-1 beliefs about the abstract EXP/NO manager --")
+for (b in belief_bases) gender_by_manager_plain(belief_exp_no_long, b, b)
+say("\n-- round-11 beliefs about the actual manager shown (M_exp/M_no/W_exp/W_no) --")
+for (b in belief_bases) gender_by_manager_plain(belief_lr_long, b, b)
+
+# ==================================================================
+# PART 8 - Gender and BID / TRADE (rounds 1-10 exp/no; rounds 11-20 identity)
+# ==================================================================
+hr("PART 8 - Do Man vs Woman participants bid / trade differently?")
+say("-- BID, group-clustered --")
+gender_by_manager_clustered(bidtrade_exp_no_long, "player.bid", "player.bid (rounds 1-10, exp/no)")
+gender_by_manager_clustered(bidtrade_lr_long,     "player.bid", "player.bid (rounds 11-20, identity)")
+
+say("\n-- TRADE, plain (participant-level mean over rounds; no group dependence) --")
+trade_agg_en_g <- merge(trade_agg_en, unique(bidtrade_exp_no_long[, c("participant.code", "player.gender")]), by = "participant.code")
+trade_agg_lr_g <- merge(trade_agg_lr, unique(bidtrade_lr_long[, c("participant.code", "player.gender")]), by = "participant.code")
+gender_by_manager_plain(trade_agg_en_g, "player.trade", "player.trade (rounds 1-10, exp/no)")
+gender_by_manager_plain(trade_agg_lr_g, "player.trade", "player.trade (rounds 11-20, identity)")
+
+# ==================================================================
 # Plots
 # ==================================================================
 png(file.path(plot_dir, "allocation_exp_no.png"), width = 700, height = 550, res = 120)
@@ -264,7 +365,7 @@ dev.off()
 
 png(file.path(plot_dir, "belief_exp_no.png"), width = 1100, height = 800, res = 120)
 par(mfrow = c(2, 2), mar = c(4, 4, 3, 1))
-for (b in belief_bases) boxplot(as.formula(paste(b, "~ manager")), data = belief_exp_no_long, main = b, xlab = "", ylab = "")
+for (b in belief_bases) boxplot(as.formula(paste(b, "~ manager")), data = belief_exp_no_long, main = sub("^player\\.", "",b), xlab = "", ylab = "")
 dev.off()
 
 png(file.path(plot_dir, "belief_lr_by_identity.png"), width = 1100, height = 800, res = 120)
@@ -299,6 +400,17 @@ dev.off()
 
 
 
+
+png(file.path(plot_dir, "allocation_by_gender.png"), width = 900, height = 600, res = 120)
+par(mar = c(4, 4, 3, 1))
+alloc_expno <- alloc_long[alloc_long$manager %in% c("exp", "no"), ]
+alloc_expno$manager <- droplevels(alloc_expno$manager)
+alloc_expno$player.gender <- factor(alloc_expno$player.gender)
+boxplot(player.allocation ~ player.gender + manager, data = alloc_expno,
+        main = "Task-1 allocation by participant gender", ylab = "player.allocation (0-100)", xlab = "gender.manager",
+        col = c("lightblue", "lightpink"), las = 2)
+abline(h = 50, lty = 2, col = "red")
+dev.off()
 
 say(sprintf("\nPlots written to %s", plot_dir))
 

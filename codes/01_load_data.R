@@ -102,6 +102,49 @@ message("Dropped ", sum(drop_vars %in% all_cols), " excluded variables; ",
 # unique key must use source_folder, not source_file)
 dat$group_uid <- paste(dat$source_folder, dat$group.id_in_subsession, sep = "__g")
 
+# ==========================================================================
+# 3b. Merge in the participant-level survey (survey_ntu*.csv), one file per
+#     subfolder, matched via participant.code + session.code.
+#
+#     participant.payoff is deliberately NOT re-merged: it is a participant-
+#     level field that is identical across every app a participant went
+#     through (verified: portfolio.participant.payoff == survey.participant.
+#     payoff for every participant), so dat already has it and merging it
+#     again would just create a duplicate .x/.y pair.
+# ==========================================================================
+survey_files <- list.files(
+  path = data_dir, pattern = "^survey_ntu.*\\.csv$",
+  recursive = TRUE, full.names = TRUE
+)
+if (length(survey_files) == 0) stop("No survey_ntu*.csv files found under ", data_dir)
+
+survey_vars <- c(
+  "player.gender", "player.age", "player.major", "player.gpa",
+  "player.crt_bat_ball", "player.crt_machines", "player.crt_lilypads",
+  "player.att_capable", "player.att_aggressive", "player.att_skills",
+  "player.att_competitive", "player.att_pressure", "player.att_emotional",
+  "player.dictator_keep"
+)
+
+read_survey_one <- function(f) {
+  d <- read.csv(f, stringsAsFactors = FALSE, check.names = FALSE)
+  d[, c("participant.code", "session.code", survey_vars)]
+}
+survey_dat <- do.call(rbind, lapply(survey_files, read_survey_one))
+
+# sanity check: one survey row per participant, and every portfolio
+# participant has a matching survey row
+dup_codes <- survey_dat$participant.code[duplicated(survey_dat$participant.code)]
+if (length(dup_codes) > 0) warning("Duplicate participant.code in survey_ntu files: ", paste(unique(dup_codes), collapse = ", "))
+unmatched <- setdiff(unique(dat$participant.code), survey_dat$participant.code)
+if (length(unmatched) > 0) warning(length(unmatched), " portfolio participant(s) have no matching survey_ntu row.")
+
+n_before <- nrow(dat)
+dat <- merge(dat, survey_dat, by = c("participant.code", "session.code"), all.x = TRUE, sort = FALSE)
+stopifnot(nrow(dat) == n_before)
+message("Merged survey_ntu demographics for ", sum(!is.na(dat$player.gender)) / length(unique(dat$subsession.round_number)),
+        " of ", length(unique(dat$participant.code)), " participants.")
+
 treat_levels <- c("M_no_W_no", "M_no_W_exp", "M_exp_W_no", "M_exp_W_exp")
 dat$player.treatment <- factor(dat$player.treatment, levels = treat_levels)
 
@@ -119,7 +162,8 @@ mgr_b <- vapply(treat_parts, function(p) if (length(p) >= 4) paste(p[3], p[4], s
 dat$left_mgr_label  <- ifelse(dat$group.p2_left_is_mgr_a == 1, mgr_a, mgr_b)
 dat$right_mgr_label <- ifelse(dat$group.p2_left_is_mgr_a == 1, mgr_b, mgr_a)
 
-id_cols <- c("participant.code", "player.treatment", "source_file", "source_folder", "group_uid")
+id_cols <- c("participant.code", "session.code", "player.treatment", "source_file", "source_folder", "group_uid",
+             survey_vars)
 
 # ==========================================================================
 # 5. alloc_long : task-1 allocation (round 1), manager in {exp, no}

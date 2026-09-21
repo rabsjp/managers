@@ -1,0 +1,178 @@
+\documentclass[12pt, letterpaper]{article}
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\usepackage{fullpage}
+\usepackage{float}\floatstyle{plaintop}\restylefloat{table}\restylefloat{figure}
+%\usepackage[figuresfirst,nolists, nomarkers]{endfloat}
+%\usepackage[format=hang,font=small,labelfont=bf]{caption}
+\usepackage[font={rm,bf},position=above,aboveskip={0.5cm}]{caption}
+
+% language
+\usepackage[english]{babel}
+
+% bibliography
+\usepackage{natbib}\citestyle{textual}
+
+% math
+\usepackage{amsmath, amsthm, amssymb, commath, cool}
+\usepackage{bbm}
+
+% add notes
+\usepackage[colorinlistoftodos, textsize = scriptsize, color = yellow!90]{todonotes}
+\setlength{\marginparwidth}{1in}
+
+% spacing
+\usepackage{setspace}
+
+
+% margins
+%\usepackage[letterpaper, margin=1.2in]{geometry}
+
+% nice tables
+\usepackage{booktabs,caption}
+\usepackage{ctable}
+\usepackage{tabularx} 
+\usepackage{subcaption}
+\usepackage{threeparttable}
+
+% table columns
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% pictures
+\usepackage{graphicx}
+\usepackage[toc,page]{appendix} % make appendix
+\usepackage[pdftex, unicode, pdfauthor={Olga Rud}]{hyperref}
+\hypersetup{colorlinks, citecolor=blue, filecolor=black, linkcolor=blue, urlcolor=blue}
+
+% theorems, propositions, corollaries, definitions
+\usepackage{thmtools} 
+\usepackage{thm-restate}
+
+\declaretheorem[name=Proposition]{prop}
+
+%\theoremstyle{plain}
+%\newtheorem{prop}{Proposition}
+\newtheorem{corr}{Corollary}
+\newtheorem{hypo}{Hypothesis}
+\newtheorem{result}{Result}
+% math operatores
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\mex}{\mathbb{E}}
+\DeclareMathOperator*{\ind}{\mathbb{I}}
+\DeclareMathOperator*{\prob}{\mathbb{P}}
+
+% spacing in notes
+\newcommand{\smalltodo}[2][]{\todo[caption={#2}, \#1]{\begin{spacing}{1}#2\end{spacing}}}
+\usepackage{doi}
+
+\usepackage[sc]{mathpazo}    % Palatino with smallcaps
+\usepackage[scaled=0.95]{helvet}  % Helvetica, scaled 95%`     
+\begin{document}
+
+
+\section{New design}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Experimental Design: Experience and Gender Identity}
+  \label{tab:exp_design_final}
+  \small
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    \textbf{Phase} & \textbf{Stage} & \textbf{Primary Task} & \textbf{Key Treatment Factors} \\ \midrule
+    \textbf{Baseline} & 0 & Risk Elicitation & Investment Task  \\
+    \addlinespace
+    \textbf{Market 1 - All Treatments} & 1 & Allocation \& Bidding & \textbf{Experience:} Exp vs. No Managers \\
+    \addlinespace
+    \textbf{Market 2 - T} & 2 & Allocation \& Bidding & \textbf{Identity:} $W_i$ vs. $M_j$   \\
+    \bottomrule
+  \end{tabular}
+  \vspace{1ex}
+  \begin{flushleft}
+    \footnotesize \textit{Notes:} Exp = Experienced, No = No Experience. $W_i$ = Woman-led, $M_j$ = Man-led. $i,j\in\{Exp,No\}$ Stage 1 acts as the baseline for Stage 2 identity effects. T = Treatment. 
+  \end{flushleft}
+\end{table}
+
+\textbf{Allocation task: }
+
+The subject has a initial endowment of cash ($e$) and allocates a share $s_{_{h}}$ to invest in either firm, $\sum^2_{h=1} s_{_{h}}=1$.
+The fundamental value of each firm is driven by $V_j= R\times x_j+100-x_j$, where $R\in\{.5, 2\}$ is the return in each of the two possible states that occur with equal probability. The returns are iid for each firm. $x$ is the actual investment of the manager which is unobserved by the subject. 
+
+\textbf{Beliefs elicitation market}
+
+Subjects also state their first order belief about each of the managers investment choice in the risky task, and share price which is going to determined in the following market game. We also elicit second order beliefs about investment and prices. 
+
+\textbf{Bidding market}
+The subject has a initial loan of cash ($L$) that is repaid at the end of the market, and a share of each firm. The subject submits a bid price, and the market format is a \emph{Bid Only Call Market BOCM} in which the median price determines the price of each share. In case of ties, the market randomly determines who buys/sells the share so we only have $(N-1)/2$ transactions at the median price, where $N=5$ is the market size. 
+
+The market is played for 10 repetitions with  feedback about ttrading outcomes: prices and transactions, but never about the state or the manager's risky choices. 
+
+The first allocation and market games we run is related to the \emph{exp}erience and \emph{no} experience managers, whithout any information about gender, followed by the four treatments that combined manager gender and experience levels. 
+
+
+\begin{result}
+There is no difference in investment behavior between male and female managers, nor between managers with managerial experience and those with no experience. \label{r1}
+\end{result}
+
+\begin{table}[hbtp]
+  \caption{Summary of choices}
+  \label{tab:summary}
+  \begin{center}
+         \begin{tabular}{l*{10}{c}}
+    \toprule
+    & \multicolumn{2}{c}{1st stage} &  \multicolumn{2}{c}{T1} &  \multicolumn{2}{c}{T2} &  \multicolumn{2}{c}{T3} &  \multicolumn{2}{c}{T4}\\
+    & Exp & No & M\_Exp & W\_exp & M\_exp & W\_no & W\_exp & M\_no & M\_no & W\_no   \\
+    \midrule
+\emph{Choices} & & & & &  & & & & &\\
+Allocation & & & & &  & & & & &\\
+$p$-value & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}& \multicolumn{2}{c}{}& \multicolumn{2}{c}{}\\
+Bid & & & & &  & & && &\\
+$p$-value & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}& \multicolumn{2}{c}{}& \multicolumn{2}{c}{}\\
+Price & & & & &  & & && &\\
+$p$-value & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}& \multicolumn{2}{c}{}& \multicolumn{2}{c}{}\\
+
+    \midrule
+\emph{First order beliefs}  & & & & &  & & & & &\\
+Investment & & & & &  & & & & &\\
+$p$-value & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}& \multicolumn{2}{c}{}& \multicolumn{2}{c}{}\\
+Price & & & & &  & & & & &\\
+$p$-value & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}& \multicolumn{2}{c}{}& \multicolumn{2}{c}{}\\
+    \midrule
+
+\emph{Second order beliefs}  & & & & &  & & & & &\\
+Investment & & & & &  & & & & &\\
+$p$-value & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}& \multicolumn{2}{c}{}& \multicolumn{2}{c}{}\\
+Price & & & & &  & & & & &\\
+$p$-value & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}& \multicolumn{2}{c}{}& \multicolumn{2}{c}{}\\
+
+
+\midrule
+     \end{tabular}
+
+  \end{center}
+  {\scriptsize ff
+    
+  }
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+\begin{result}\label{r2} Subjects tilt their portfolio and bid higher towards managers with experience, but equally split their porfolio and bid between male and female managers given the managerial experience. 
+\end{result}
+
+\begin{result}\label{r3} The allocation and bidding decisions observed are consistent with first (and second) order beliefs about investment in the risky choices. 
+\end{result}
+
+\begin{result}\label{r4} Subjects also predict that share prices for experience managers are higher, consistent with the investment choices, while they predict no price difference across gender. 
+\end{result}
+
+
+\end{document}
