@@ -285,6 +285,33 @@ bidtrade_lr_long <- rbind(
 bidtrade_lr_long <- bidtrade_lr_long[!is.na(bidtrade_lr_long$player.bid), ]
 bidtrade_lr_long$manager <- factor(bidtrade_lr_long$manager, levels = c("M_exp", "M_no", "W_exp", "W_no"))
 
+# ==========================================================================
+# 9b. price_exp_no_long / price_lr_long : the market-CLEARING price, one
+#     value per group per round (group.price_exp/no, group.price_l/r are
+#     identical for every participant in that group-round, so we collapse
+#     to one row per group_uid x round x manager via aggregate() before
+#     using it -- this is genuinely group-level data, not individual data).
+# ==========================================================================
+price_gid_cols <- c("group_uid", "player.treatment", "subsession.round_number")
+
+price_exp_no_raw <- rbind(
+  cbind(r1_10[price_gid_cols], manager = "exp", player.price = r1_10$group.price_exp),
+  cbind(r1_10[price_gid_cols], manager = "no",  player.price = r1_10$group.price_no)
+)
+price_exp_no_raw <- price_exp_no_raw[!is.na(price_exp_no_raw$player.price), ]
+price_exp_no_long <- aggregate(player.price ~ group_uid + player.treatment + subsession.round_number + manager,
+                               data = price_exp_no_raw, FUN = mean)
+price_exp_no_long$manager <- factor(price_exp_no_long$manager, levels = c("no", "exp"))
+
+price_lr_raw <- rbind(
+  cbind(r11_20[price_gid_cols], manager = r11_20$left_mgr_label,  player.price = r11_20$group.price_l),
+  cbind(r11_20[price_gid_cols], manager = r11_20$right_mgr_label, player.price = r11_20$group.price_r)
+)
+price_lr_raw <- price_lr_raw[!is.na(price_lr_raw$player.price), ]
+price_lr_long <- aggregate(player.price ~ group_uid + player.treatment + subsession.round_number + manager,
+                           data = price_lr_raw, FUN = mean)
+price_lr_long$manager <- factor(price_lr_long$manager, levels = c("M_exp", "M_no", "W_exp", "W_no"))
+
 # ---- 10. save everything ----------------------------------------------
 out_dir <- file.path(repo_root, "output")
 if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
@@ -296,5 +323,7 @@ if (sys.nframe() == 0 || identical(environment(), globalenv())) {
   write.csv(bidtrade_exp_no_long,  file.path(out_dir, "bidtrade_exp_no_long.csv"),  row.names = FALSE)
   write.csv(belief_lr_long,        file.path(out_dir, "belief_lr_long.csv"),        row.names = FALSE)
   write.csv(bidtrade_lr_long,      file.path(out_dir, "bidtrade_lr_long.csv"),      row.names = FALSE)
-  message("Wrote master_data.csv and the 5 long-format data sets to ", out_dir)
+  write.csv(price_exp_no_long,     file.path(out_dir, "price_exp_no_long.csv"),     row.names = FALSE)
+  write.csv(price_lr_long,         file.path(out_dir, "price_lr_long.csv"),         row.names = FALSE)
+  message("Wrote master_data.csv and the 7 long-format data sets to ", out_dir)
 }

@@ -308,4 +308,56 @@ PART 8 - Do Man vs Woman participants bid / trade differently?
    W_exp    56      44     0.04      -0.05                 0.09  0.76 0.4488   0.4422
     W_no    57      43    -0.08       0.11                -0.19 -1.70 0.0918   0.0894
 
+========================================================================
+PART 9 - Summary-of-choices table (Allocation / Bid / Price / Beliefs)
+========================================================================
+
+Summary-of-choices table (mean for each manager, and the p-value that
+the two managers are equal in that comparison):
+
+-- Allocation --
+   1st stage  exp    = 71.87    no     = 28.13      p = 0.000
+   T1         M_exp  = 50.56    W_exp  = 49.44      p = 0.816
+   T2         M_exp  = 68.14    W_no   = 31.86      p = 0.000
+   T3         W_exp  = 70.82    M_no   = 29.18      p = 0.000
+   T4         M_no   = 48.56    W_no   = 51.44      p = 0.511
+-- Bid --
+   1st stage  exp    = 297.24   no     = 137.20     p = 0.000
+   T1         M_exp  = 201.03   W_exp  = 207.35     p = 0.485
+   T2         M_exp  = 274.00   W_no   = 131.71     p = 0.000
+   T3         W_exp  = 320.76   M_no   = 119.44     p = 0.001
+   T4         M_no   = 163.43   W_no   = 190.96     p = 0.284
+-- Price --
+   1st stage  exp    = 307.01   no     = 134.02     p = 0.000
+   T1         M_exp  = 204.38   W_exp  = 211.77     p = 0.391
+   T2         M_exp  = 292.11   W_no   = 125.59     p = 0.000
+   T3         W_exp  = 351.47   M_no   = 110.89     p = 0.001
+   T4         M_no   = 167.78   W_no   = 193.27     p = 0.376
+-- Investment (1st order) --
+   1st stage  exp    = 118.99   no     = 82.45      p = 0.000
+   T1         M_exp  = 124.68   W_exp  = 123.38     p = 0.745
+   T2         M_exp  = 118.20   W_no   = 76.22      p = 0.000
+   T3         W_exp  = 133.70   M_no   = 84.92      p = 0.000
+   T4         M_no   = 98.92    W_no   = 97.72      p = 0.700
+-- Price (1st order) --
+   1st stage  exp    = 335.83   no     = 214.35     p = 0.000
+   T1         M_exp  = 279.12   W_exp  = 275.90     p = 0.618
+   T2         M_exp  = 327.84   W_no   = 185.78     p = 0.000
+   T3         W_exp  = 364.48   M_no   = 162.60     p = 0.000
+   T4         M_no   = 209.70   W_no   = 234.00     p = 0.089
+-- Investment (2nd order) --
+   1st stage  exp    = 121.83   no     = 81.07      p = 0.000
+   T1         M_exp  = 123.68   W_exp  = 120.66     p = 0.444
+   T2         M_exp  = 124.06   W_no   = 79.40      p = 0.000
+   T3         W_exp  = 134.36   M_no   = 78.86      p = 0.000
+   T4         M_no   = 93.02    W_no   = 91.78      p = 0.726
+-- Price (2nd order) --
+   1st stage  exp    = 348.56   no     = 215.56     p = 0.000
+   T1         M_exp  = 278.54   W_exp  = 269.76     p = 0.266
+   T2         M_exp  = 344.36   W_no   = 178.54     p = 0.000
+   T3         W_exp  = 372.84   M_no   = 157.78     p = 0.000
+   T4         M_no   = 214.30   W_no   = 230.02     p = 0.333
+
+Filled LaTeX table written to /Users/2924281/Desktop/jotarepos/managers/output/summary_table.tex
+
 Plots written to /Users/2924281/Desktop/jotarepos/managers/output/plots

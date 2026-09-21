@@ -354,6 +354,166 @@ gender_by_manager_plain(trade_agg_en_g, "player.trade", "player.trade (rounds 1-
 gender_by_manager_plain(trade_agg_lr_g, "player.trade", "player.trade (rounds 11-20, identity)")
 
 # ==================================================================
+# PART 9 - Fill in the "Summary of choices" table (paper_oct_2026/results.tex)
+#
+# Layout: 5 comparisons (1st stage = exp vs no, pooled across all 4
+# treatments; T1..T4 = the two managers actually shown in that treatment),
+# and for each comparison, one value per manager plus one p-value testing
+# whether the two managers' values are equal in that comparison.
+#
+#   Allocation, Investment (1st/2nd order), Price (1st/2nd order):
+#     INDIVIDUAL level. Per participant, compute manager_A - manager_B,
+#     test that this difference is 0 (equivalent to a paired t-test).
+#
+#   Bid: the market clears at the GROUP level each round, so the group
+#     dependence has to be accounted for by aggregating to one number per
+#     group (mean over participants and rounds within that group) BEFORE
+#     testing manager_A - manager_B = 0 across groups. The displayed mean
+#     is still the raw individual-level mean bid, for comparability with
+#     the rest of the report; only the p-value uses the group aggregate.
+#
+#   Price: already a group-level variable (group.price_exp/no/l/r are
+#     shared by every participant in a group-round); aggregated to one
+#     number per group the same way as Bid.
+# ==================================================================
+hr("PART 9 - Summary-of-choices table (Allocation / Bid / Price / Beliefs)")
+
+table_comparisons <- list(
+  list(name = "1st stage", pair = c("exp", "no"),     treatment = NA),
+  list(name = "T1",        pair = c("M_exp", "W_exp"), treatment = "M_exp_W_exp"),
+  list(name = "T2",        pair = c("M_exp", "W_no"),  treatment = "M_exp_W_no"),
+  list(name = "T3",        pair = c("W_exp", "M_no"),  treatment = "M_no_W_exp"),
+  list(name = "T4",        pair = c("M_no", "W_no"),   treatment = "M_no_W_no")
+)
+
+# individual-level paired test: per-participant difference tested against 0
+table_test_individual <- function(df, var, pair, treatment = NA, id_col = "participant.code") {
+  if (!is.na(treatment)) df <- df[df$player.treatment == treatment, ]
+  df <- df[df$manager %in% pair & !is.na(df[[var]]), ]
+  w <- reshape(df[, c(id_col, "manager", var)], idvar = id_col, timevar = "manager", direction = "wide")
+  colA <- paste0(var, ".", pair[1]); colB <- paste0(var, ".", pair[2])
+  if (!all(c(colA, colB) %in% names(w))) return(list(meanA = NA, meanB = NA, n = 0, p = NA))
+  ok <- complete.cases(w[[colA]], w[[colB]])
+  a <- w[[colA]][ok]; b <- w[[colB]][ok]
+  if (length(a) < 2) return(list(meanA = mean(a), meanB = mean(b), n = length(a), p = NA))
+  tt <- t.test(a - b)
+  list(meanA = mean(a), meanB = mean(b), n = length(a), p = tt$p.value)
+}
+
+# group-level paired test: aggregate to one value per group_uid per manager
+# (mean over participants/rounds within the group) THEN test the group-level
+# difference against 0 -- this is what "accounts for the group dependence".
+table_test_group <- function(df, var, pair, treatment = NA) {
+  raw <- df
+  if (!is.na(treatment)) raw <- raw[raw$player.treatment == treatment, ]
+  raw <- raw[raw$manager %in% pair & !is.na(raw[[var]]), ]
+  meanA_raw <- mean(raw[[var]][raw$manager == pair[1]], na.rm = TRUE)
+  meanB_raw <- mean(raw[[var]][raw$manager == pair[2]], na.rm = TRUE)
+  
+  agg <- aggregate(raw[[var]], by = list(group_uid = raw$group_uid, manager = raw$manager), FUN = mean)
+  names(agg)[3] <- "val"
+  w <- reshape(agg, idvar = "group_uid", timevar = "manager", direction = "wide")
+  colA <- paste0("val.", pair[1]); colB <- paste0("val.", pair[2])
+  if (!all(c(colA, colB) %in% names(w))) return(list(meanA = meanA_raw, meanB = meanB_raw, n_groups = 0, p = NA))
+  ok <- complete.cases(w[[colA]], w[[colB]])
+  a <- w[[colA]][ok]; b <- w[[colB]][ok]
+  if (length(a) < 2) return(list(meanA = meanA_raw, meanB = meanB_raw, n_groups = length(a), p = NA))
+  tt <- t.test(a - b)
+  list(meanA = meanA_raw, meanB = meanB_raw, n_groups = length(a), p = tt$p.value)
+}
+
+
+
+table_rows <- list(
+  list(name = "Allocation",              kind = "individual", var = "player.allocation",              ds1 = "alloc_long",           dslr = "alloc_long"),
+  list(name = "Bid",                     kind = "group",      var = "player.bid",                      ds1 = "bidtrade_exp_no_long", dslr = "bidtrade_lr_long"),
+  list(name = "Price",                   kind = "group",      var = "player.price",                    ds1 = "price_exp_no_long",    dslr = "price_lr_long"),
+  list(name = "Investment (1st order)",  kind = "individual", var = "player.belief_inv",               ds1 = "belief_exp_no_long",   dslr = "belief_lr_long"),
+  list(name = "Price (1st order)",       kind = "individual", var = "player.belief_price",             ds1 = "belief_exp_no_long",   dslr = "belief_lr_long"),
+  list(name = "Investment (2nd order)",  kind = "individual", var = "player.belief_others_inv",        ds1 = "belief_exp_no_long",   dslr = "belief_lr_long"),
+  list(name = "Price (2nd order)",       kind = "individual", var = "player.belief_others_price",      ds1 = "belief_exp_no_long",   dslr = "belief_lr_long")
+)
+
+table_results <- list()
+for (r in table_rows) {
+  cells <- list()
+  for (cmp in table_comparisons) {
+    ds <- get(if (cmp$name == "1st stage") r$ds1 else r$dslr)
+    res <- if (r$kind == "individual") {
+      table_test_individual(ds, r$var, cmp$pair, cmp$treatment)
+    } else {
+      table_test_group(ds, r$var, cmp$pair, cmp$treatment)
+    }
+    cells[[cmp$name]] <- res
+  }
+  table_results[[r$name]] <- cells
+}
+
+# ---- print a plain-text version of the table into the report ----------
+say("\nSummary-of-choices table (mean for each manager, and the p-value that")
+say("the two managers are equal in that comparison):\n")
+for (r in table_rows) {
+  say(sprintf("-- %s --", r$name))
+  for (cmp in table_comparisons) {
+    res <- table_results[[r$name]][[cmp$name]]
+    say(sprintf("   %-10s %-6s = %-8s %-6s = %-8s   p = %s",
+                cmp$name, cmp$pair[1], fmt(res$meanA), cmp$pair[2], fmt(res$meanB), fmt(res$p, 3)))
+  }
+}
+
+# ---- write the filled LaTeX table (matches paper_oct_2026/results.tex) --
+tex_num  <- function(x) if (is.na(x)) "" else sprintf("%.0f", x)
+tex_pval <- function(x) if (is.na(x)) "" else sprintf("%.3f", x)
+
+value_row <- function(row_name, display_name = row_name) {
+  vals <- character(0)
+  for (cmp in table_comparisons) {
+    res <- table_results[[row_name]][[cmp$name]]
+    vals <- c(vals, tex_num(res$meanA), tex_num(res$meanB))
+  }
+  paste0(display_name, " & ", paste(vals, collapse = " & "), " \\\\")
+}
+
+pvalue_row <- function(row_name) {
+  vals <- vapply(table_comparisons, function(cmp) {
+    res <- table_results[[row_name]][[cmp$name]]
+    sprintf("\\multicolumn{2}{c|}{%s}", tex_pval(res$p))
+  }, character(1))
+  paste0("$p$-value & ", paste(vals, collapse = " & "), "\\\\")
+}
+
+tex_lines <- c(
+  "\\begin{tabular}{lll|ll|ll|ll|ll|}",
+  "  \\toprule",
+  "  & \\multicolumn{2}{c}{1st stage} &  \\multicolumn{2}{c}{T1} &  \\multicolumn{2}{c}{T2} &  \\multicolumn{2}{c}{T3} &  \\multicolumn{2}{c}{T4}\\\\",
+  "  & Exp & No & M\\_exp & W\\_exp & M\\_exp & W\\_no & W\\_exp & M\\_no & M\\_no & W\\_no   \\\\",
+  "  \\midrule",
+  "\\emph{Choices} & & & & &  & & & & &\\\\",
+  value_row("Allocation"),
+  pvalue_row("Allocation"),
+  value_row("Bid"),
+  pvalue_row("Bid"),
+  value_row("Price"),
+  pvalue_row("Price"),
+  "  \\midrule",
+  "\\emph{First order beliefs}  & & & & &  & & & & &\\\\",
+  value_row("Investment (1st order)", "Investment"),
+  pvalue_row("Investment (1st order)"),
+  value_row("Price (1st order)", "Price"),
+  pvalue_row("Price (1st order)"),
+  "  \\midrule",
+  "\\emph{Second order beliefs}  & & & & &  & & & & &\\\\",
+  value_row("Investment (2nd order)", "Investment"),
+  pvalue_row("Investment (2nd order)"),
+  value_row("Price (2nd order)", "Price"),
+  pvalue_row("Price (2nd order)"),
+  "  \\midrule",
+  "\\end{tabular}"
+)
+writeLines(tex_lines, file.path(paste(out_dir,"/tables",sep=""), "table_comparison.tex"))
+say(sprintf("\nFilled LaTeX table written to %s", file.path(out_dir, "table_comparison.tex")))
+
+# ==================================================================
 # Plots
 # ==================================================================
 png(file.path(plot_dir, "allocation_exp_no.png"), width = 700, height = 550, res = 120)
@@ -397,8 +557,6 @@ lines(m$subsession.round_number[m$manager == "W_exp"], m$player.bid[m$manager ==
 
 legend("topright", legend = c("M_exp", "M_no","W_no","W_exp"), col = c("steelblue", "firebrick", "firebrick","steelblue"), lty = 1, pch = c (1,1,2,2))
 dev.off()
-
-
 
 
 png(file.path(plot_dir, "allocation_by_gender.png"), width = 900, height = 600, res = 120)
