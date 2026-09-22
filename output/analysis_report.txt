@@ -421,3 +421,23 @@ firm_data.csv: 364 rows (gender: 182/182; experience: 207/157)
    No Exp: gender Woman  = 50.91    Man    = 53.29      p = 0.5798
 
 invest_other_gender_experience.png written to /Users/2924281/Desktop/jotarepos/managers/output/plots
+
+========================================================================
+PART 11 - Descriptive statistics of the survey sample
+========================================================================
+n = 200 participants
+
+-- Descriptives --
+   Age (mean)                   19.98
+   Social preference (dictator_keep, mean) 83.88
+   Risky investment (dyn_stock, mean) 75.39
+   Women in sample              43.5%
+
+-- Field of study (%, sums to 100) --
+   Business & Economics                   27.5%
+   Engineering                            48.5%
+   Computing, Math & Physical Sciences    13.0%
+   Life, Social & Behavioral Sciences     11.0%
+   TOTAL                                  100.0
+
+Descriptives LaTeX table written to /Users/2924281/Desktop/jotarepos/managers/output/tables/descriptives.tex

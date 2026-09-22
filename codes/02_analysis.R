@@ -653,5 +653,157 @@ dev.off()
 
 say(sprintf("\ninvest_other_gender_experience.png written to %s", plot_dir))
 
+# ==================================================================
+# PART 11 - Descriptive statistics of the survey participants
+#
+# One row per participant (round 1 of `dat`, since every survey_ntu
+# variable is a participant-level constant that was merged onto every
+# round -- see 01_load_data.R). player.major is messy free text (92
+# distinct spellings/abbreviations for 200 participants, including case
+# and whitespace variants of the same program), so it is mapped to 4
+# broad fields of study via an explicit lookup table built by hand from
+# every distinct value observed. A few joint/ambiguous majors (e.g.
+# "Economics and Psychology", "Environmental Engineering and Economics")
+# are assigned to what looks like the primary discipline; this is a
+# judgment call, not an exact classification.
+# ==================================================================
+hr("PART 11 - Descriptive statistics of the survey sample")
+
+survey_r1 <- dat[dat$subsession.round_number == 1, ]
+say(sprintf("n = %d participants", nrow(survey_r1)))
+
+# ---- field-of-study lookup: every distinct (trimmed, lower-cased) value
+# ---- of player.major observed in the data, mapped to one of 4 buckets
+major_category_map <- c(
+  # -- Business & Economics --
+  "aacsb" = "Business & Economics",
+  "applied economics" = "Business & Economics",
+  "acccountancy" = "Business & Economics",
+  "accountancy" = "Business & Economics",
+  "accounting" = "Business & Economics",
+  "basa" = "Business & Economics",
+  "bsb" = "Business & Economics",
+  "bssb" = "Business & Economics",
+  "banking and finance" = "Business & Economics",
+  "business" = "Business & Economics",
+  "business (single major)" = "Business & Economics",
+  "ecbu" = "Business & Economics",
+  "econ" = "Business & Economics",
+  "economics" = "Business & Economics",
+  "ecps" = "Business & Economics",
+  "economics and data science" = "Business & Economics",
+  "economics with second major in business" = "Business & Economics",
+  "economics and psychology" = "Business & Economics",
+  "finance" = "Business & Economics",
+  "mathematics and economics" = "Business & Economics",
+  
+  # -- Engineering --
+  "aerospace engineering" = "Engineering",
+  "bioengineering" = "Engineering",
+  "cbe" = "Engineering",
+  "ce" = "Engineering",
+  "chemical engineering" = "Engineering",
+  "chemical and biomolecular engineering" = "Engineering",
+  "civil engineering" = "Engineering",
+  "comp engineering" = "Engineering",
+  "computer engineer" = "Engineering",
+  "computer engineering" = "Engineering",
+  "eee" = "Engineering",
+  "electrical and electronic engineering" = "Engineering",
+  "electrical and electronics engineering" = "Engineering",
+  "electronics" = "Engineering",
+  "engineering" = "Engineering",
+  "environmental engineering" = "Engineering",
+  "environmental engineering and economics" = "Engineering",
+  "iem" = "Engineering",
+  "information engineering & media" = "Engineering",
+  "information engineering and media" = "Engineering",
+  "maeo" = "Engineering",
+  "materials engineering" = "Engineering",
+  "materials science and engineering" = "Engineering",
+  "me" = "Engineering",
+  "ms" = "Engineering",
+  "mse" = "Engineering",
+  "mechanical engineering" = "Engineering",
+  "robotics" = "Engineering",
+  "robotics engineering" = "Engineering",
+  "signal processing" = "Engineering",
+  
+  # -- Computing, Math & Physical Sciences --
+  "ccds" = "Computing, Math & Physical Sciences",
+  "computer science" = "Computing, Math & Physical Sciences",
+  "cs" = "Computing, Math & Physical Sciences",
+  "csc" = "Computing, Math & Physical Sciences",
+  "data science" = "Computing, Math & Physical Sciences",
+  "data science and ai" = "Computing, Math & Physical Sciences",
+  "data science and artificial intelligience" = "Computing, Math & Physical Sciences",
+  "dsai" = "Computing, Math & Physical Sciences",
+  "math" = "Computing, Math & Physical Sciences",
+  "physics" = "Computing, Math & Physical Sciences",
+  "physics and mathematical sciences" = "Computing, Math & Physical Sciences",
+  
+  # -- Life, Social & Behavioral Sciences --
+  "bio sci" = "Life, Social & Behavioral Sciences",
+  "biological sciences" = "Life, Social & Behavioral Sciences",
+  "biomedical science and biobusiness" = "Life, Social & Behavioral Sciences",
+  "chemistry and biological chemistry" = "Life, Social & Behavioral Sciences",
+  "cca" = "Life, Social & Behavioral Sciences",
+  "communication studies" = "Life, Social & Behavioral Sciences",
+  "maritime studies" = "Life, Social & Behavioral Sciences",
+  "maritime studies and international trading" = "Life, Social & Behavioral Sciences",
+  "psychology" = "Life, Social & Behavioral Sciences",
+  "public policy and global affairs" = "Life, Social & Behavioral Sciences",
+  "ppmj" = "Life, Social & Behavioral Sciences",
+  "sociology" = "Life, Social & Behavioral Sciences"
+)
+
+major_key <- tolower(trimws(survey_r1$player.major))
+field_category <- unname(major_category_map[major_key])
+
+unmatched <- unique(survey_r1$player.major[is.na(field_category)])
+if (length(unmatched) > 0) {
+  warning("player.major values with no category mapping (excluded from the field-of-study %): ",
+          paste(unmatched, collapse = ", "))
+}
+field_category <- factor(field_category, levels = c("Business & Economics", "Engineering",
+                                                    "Computing, Math & Physical Sciences",
+                                                    "Life, Social & Behavioral Sciences"))
+
+field_pct <- round(100 * prop.table(table(field_category)), 1)
+# rounding can leave the total a hair off 100.0; nudge the largest share so it sums exactly
+field_pct[which.max(field_pct)] <- field_pct[which.max(field_pct)] + (100 - sum(field_pct))
+
+pct_women <- 100 * mean(survey_r1$player.gender == "Woman", na.rm = TRUE)
+
+say("\n-- Descriptives --")
+say(sprintf("   %-28s %s", "Age (mean)", fmt(mean(survey_r1$player.age, na.rm = TRUE))))
+say(sprintf("   %-28s %s", "Social preference (dictator keep, mean)", fmt(mean(survey_r1$player.dictator_keep, na.rm = TRUE))))
+say(sprintf("   %-28s %s", "Risky investment (mean)", fmt(mean(survey_r1$player.dyn_stock, na.rm = TRUE))))
+say(sprintf("   %-28s %s%%", "Women", fmt(pct_women, 1)))
+say("\n-- Field of study (%, sums to 100) --")
+for (lev in levels(field_category)) say(sprintf("   %-38s %s%%", lev, fmt(field_pct[lev], 1)))
+say(sprintf("   %-38s %s", "TOTAL", fmt(sum(field_pct), 1)))
+
+# ---- write a LaTeX version, matching the style of the other output tables
+desc_tex <- c(
+  "\\begin{tabular}{lc}",
+  "  \\toprule",
+  "  \\textbf{Variable} & \\textbf{Value} \\\\",
+  "  \\midrule",
+  sprintf("Age (mean) & %.2f \\\\", mean(survey_r1$player.age, na.rm = TRUE)),
+  sprintf("Social preference (dictator kept, mean) & %.2f\\%%  \\\\", mean(survey_r1$player.dictator_keep, na.rm = TRUE)),
+  sprintf("Risky investment (mean) & %.2f \\\\", mean(survey_r1$player.dyn_stock, na.rm = TRUE)),
+  sprintf("Women & %.1f\\%% \\\\", pct_women),
+  "  \\midrule",
+  "\\emph{Field of study} & \\\\",
+  sprintf("\\quad %s & %.1f\\%% \\\\", gsub("&", "\\\\&", levels(field_category)), field_pct),
+  "  \\bottomrule",
+  "\\end{tabular}"
+)
+tables_dir <- file.path(out_dir, "tables")
+if (!dir.exists(tables_dir)) dir.create(tables_dir, recursive = TRUE)
+writeLines(desc_tex, file.path(tables_dir, "descriptives.tex"))
+say(sprintf("\nDescriptives LaTeX table written to %s", file.path(tables_dir, "descriptives.tex")))
+
 writeLines(report, file.path(out_dir, "analysis_report.txt"))
 message("\nDone. Report written to ", file.path(out_dir, "analysis_report.txt"))
