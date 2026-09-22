@@ -572,5 +572,86 @@ dev.off()
 
 say(sprintf("\nPlots written to %s", plot_dir))
 
+# ==================================================================
+# PART 10 - firm_data.csv: invest.other by gender / experience.
+#
+# firm_data.csv is an independent data set (real managers' investment
+# choices), not part of the portfolio/survey pipeline above, so it is
+# read directly here. Each of the 4 bar-pairs below is compared with an
+# unpaired two-sample t-test (Welch); a significance bracket connects
+# each pair of bars with the p-value printed above the bracket.
+# ==================================================================
+hr("PART 10 - firm_data.csv (invest.other) by gender / experience")
+
+firm_dat <- read.csv(file.path(repo_root, "data", "firm_data.csv"), stringsAsFactors = FALSE)
+say(sprintf("firm_data.csv: %d rows (gender: %s; experience: %s)",
+            nrow(firm_dat), paste(table(firm_dat$gender), collapse = "/"), paste(table(firm_dat$experience), collapse = "/")))
+
+ttest_p <- function(x, y) {
+  x <- x[!is.na(x)]; y <- y[!is.na(y)]
+  if (length(x) < 2 || length(y) < 2) return(NA_real_)
+  t.test(x, y)$p.value
+}
+
+bar_specs <- list(
+  list(bar_label = "Woman", pair_label = "Gender",      value = mean(firm_dat$invest.other[firm_dat$gender == "W"], na.rm = TRUE)),
+  list(bar_label = "Man",   pair_label = "Gender",      value = mean(firm_dat$invest.other[firm_dat$gender == "M"], na.rm = TRUE)),
+  list(bar_label = "Exp",   pair_label = "Experience",  value = mean(firm_dat$invest.other[firm_dat$experience == "exp"], na.rm = TRUE)),
+  list(bar_label = "No",    pair_label = "Experience",  value = mean(firm_dat$invest.other[firm_dat$experience == "no"], na.rm = TRUE)),
+  list(bar_label = "Woman", pair_label = "Exp: gender", value = mean(firm_dat$invest.other[firm_dat$experience == "exp" & firm_dat$gender == "W"], na.rm = TRUE)),
+  list(bar_label = "Man",   pair_label = "Exp: gender", value = mean(firm_dat$invest.other[firm_dat$experience == "exp" & firm_dat$gender == "M"], na.rm = TRUE)),
+  list(bar_label = "Woman", pair_label = "No Exp: gender",  value = mean(firm_dat$invest.other[firm_dat$experience == "no" & firm_dat$gender == "W"], na.rm = TRUE)),
+  list(bar_label = "Man",   pair_label = "No Exp: gender",  value = mean(firm_dat$invest.other[firm_dat$experience == "no" & firm_dat$gender == "M"], na.rm = TRUE))
+)
+bar_vals   <- sapply(bar_specs, `[[`, "value")
+bar_labels <- sapply(bar_specs, `[[`, "bar_label")
+pair_names <- sapply(bar_specs, `[[`, "pair_label")[c(1, 3, 5, 7)]
+
+pair_pvals <- c(
+  gender        = ttest_p(firm_dat$invest.other[firm_dat$gender == "W"], firm_dat$invest.other[firm_dat$gender == "M"]),
+  experience    = ttest_p(firm_dat$invest.other[firm_dat$experience == "exp"], firm_dat$invest.other[firm_dat$experience == "no"]),
+  exp_by_gender = ttest_p(firm_dat$invest.other[firm_dat$experience == "exp" & firm_dat$gender == "W"],
+                          firm_dat$invest.other[firm_dat$experience == "exp" & firm_dat$gender == "M"]),
+  no_by_gender  = ttest_p(firm_dat$invest.other[firm_dat$experience == "no" & firm_dat$gender == "W"],
+                          firm_dat$invest.other[firm_dat$experience == "no" & firm_dat$gender == "M"])
+)
+
+say("\n-- bar values and pairwise t-test p-values --")
+for (i in seq_along(pair_pvals)) {
+  b1 <- bar_specs[[2 * i - 1]]; b2 <- bar_specs[[2 * i]]
+  say(sprintf("   %-14s %-6s = %-8s %-6s = %-8s   p = %s",
+              pair_names[i], b1$bar_label, fmt(b1$value), b2$bar_label, fmt(b2$value), fmt(pair_pvals[i], 4)))
+}
+
+png(file.path(plot_dir, "invest_other_gender_experience.png"), width = 1000, height = 700, res = 120)
+par(mar = c(6, 4, 3, 1))
+bar_cols <- rep(c("lightpink", "lightblue"), 4)
+y_max   <- max(bar_vals, na.rm = TRUE)
+bp <- barplot(bar_vals, names.arg = bar_labels, col = bar_cols,
+              ylim = c(0, y_max * 1.35),
+              main = "Investment choice (managers)",
+              ylab = "mean")
+
+tick_h <- y_max * 0.02   # length of the small vertical ticks dropping to each bar
+for (i in seq_along(pair_pvals)) {
+  idx <- c(2 * i - 1, 2 * i)
+  x1 <- bp[idx[1]]; x2 <- bp[idx[2]]
+  y_bar_top <- max(bar_vals[idx], na.rm = TRUE)
+  y_bracket <- y_bar_top + y_max * 0.10   # height of the horizontal bracket bar
+  
+  # bracket: two vertical ticks (one per bar) joined by a horizontal line
+  segments(x1, bar_vals[idx[1]] + tick_h * 0.3, x1, y_bracket)
+  segments(x2, bar_vals[idx[2]] + tick_h * 0.3, x2, y_bracket)
+  segments(x1, y_bracket, x2, y_bracket)
+  
+  # p-value text sits just above the bracket, pointed to by the two ticks
+  text(mean(c(x1, x2)), y_bracket + y_max * 0.03, labels = sprintf("p = %.3f", pair_pvals[i]), cex = 0.75)
+  mtext(pair_names[i], side = 1, line = 4.2, at = mean(c(x1, x2)), cex = 0.7)
+}
+legend("topleft", legend = c("Woman / Exp", "Man / No"), fill = c("lightpink", "lightblue"), cex = 0.7, bty = "n")
+dev.off()
+
+say(sprintf("\ninvest_other_gender_experience.png written to %s", plot_dir))
+
 writeLines(report, file.path(out_dir, "analysis_report.txt"))
 message("\nDone. Report written to ", file.path(out_dir, "analysis_report.txt"))
