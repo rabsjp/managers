@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.19)  23 SEP 2026 11:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.19)  20 NOV 2026 11:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1043,69 +1043,91 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (../output/tables/descriptives.tex)
 
 Package nag Warning: `center' environment in table.
-(nag)                Maybe you want \centering instead on input line 121.
+(nag)                Maybe you want \centering instead on input line 119.
 
 Package hyperref Info: bookmark level for unknown result defaults to 0 on input
- line 130.
+ line 127.
 
-Package nag Warning: \label in float, but not after \caption on input line 135.
-
-
-
-Package nag Warning: \label in float, but not after \caption on input line 135.
+Package caption Warning: \label without proper reference on input line 133.
+See the caption package documentation for explanation.
 
 
-<../output/plots/invest_other_gender_experience.png, id=35, 1003.75pt x 702.625
+LaTeX Warning: Reference `fig:inv_mana' on page 1 undefined on input line 130.
+
+[1
+
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package nag Warning: \label in float, but not after \caption on input line 133.
+
+
+
+Package nag Warning: \label in float, but not after \caption on input line 133.
+
+
+<../output/plots/invest_other_gender_experience.png, id=54, 1003.75pt x 702.625
 pt>
 File: ../output/plots/invest_other_gender_experience.png Graphic file (type png
 )
 <use ../output/plots/invest_other_gender_experience.png>
 Package pdftex.def Info: ../output/plots/invest_other_gender_experience.png  us
-ed on input line 137.
+ed on input line 135.
 (pdftex.def)             Requested size: 301.12732pt x 210.78912pt.
 
 Package nag Warning: `center' environment in figure.
-(nag)                Maybe you want \centering instead on input line 138.
+(nag)                Maybe you want \centering instead on input line 136.
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 140.
+(Font)              scaled to size 5.21004pt on input line 138.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 140.
+(Font)              scaled to size 5.21004pt on input line 138.
+[2 <../output/plots/invest_other_gender_experience.png>]
 (../output/tables/table_comparison.tex)
 
 Package nag Warning: `center' environment in table.
-(nag)                Maybe you want \centering instead on input line 156.
+(nag)                Maybe you want \centering instead on input line 154.
 
-[1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2]
+Overfull \hbox (4.67375pt too wide) in paragraph at lines 162--163
+[]\OT1/pplx/m/n/12 The tilt to-wards ex-pe-ri-enced man-agers is also ev-i-dent
+ in the treat-ments across columns
+ []
 
-Package nag Warning: 5 complaints in total.
+[3] (../output/tables/regression_table.tex)
 
-[3 <../output/plots/invest_other_gender_experience.png>] (./results.aux)
+Package nag Warning: `center' environment in table.
+(nag)                Maybe you want \centering instead on input line 182.
+
+
+Package nag Warning: 6 complaints in total.
+
+[4] (./results.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `results.out' has not changed.
-(rerunfilecheck)             Checksum: CCFC6EA7AE429D1BC8F01C612065752F;96.
+(rerunfilecheck)             Checksum: 92D8F25ECE8E855255AF79D8DE29602A;174.
  ) 
 Here is how much of TeX's memory you used:
- 25180 strings out of 478994
- 450525 string characters out of 5858184
- 792813 words of memory out of 5000000
- 42084 multiletter control sequences out of 15000+600000
- 449179 words of font info for 147 fonts, out of 8000000 for 9000
+ 25197 strings out of 478994
+ 450779 string characters out of 5858184
+ 791813 words of memory out of 5000000
+ 42092 multiletter control sequences out of 15000+600000
+ 449677 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,9n,130p,462b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,9n,130p,704b,450s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
-live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
-ive/2021/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2
-021/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/tex
-mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist
-/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on results.pdf (3 pages, 114217 bytes).
+exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
+xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
+ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/20
+21/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texm
+f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/
+fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on results.pdf (4 pages, 128508 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

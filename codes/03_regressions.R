@@ -55,10 +55,10 @@ print_lm <- function(fit, fe_prefix = "factor(session.code)") {
 # ------------------------------------------------------------------
 hr("SPEC 1 - Relative bid (EXP - NO), rounds 1-10")
 
-bid_en_p <- aggregate(log(player.bid) ~ participant.code + manager + group_uid, data = bidtrade_exp_no_long, FUN = mean)
+bid_en_p <- aggregate(player.bid ~ participant.code + manager + group_uid, data = bidtrade_exp_no_long, FUN = mean)
 bid_en_w <- reshape(bid_en_p, idvar = c("participant.code","group_uid"), timevar = "manager", direction = "wide")
 names(bid_en_w)<-c("participant.code","group_uid","player.bid.no","player.bid.exp")
-bid_en_w$rel_bid_en <- bid_en_w$player.bid.exp - bid_en_w$player.bid.no
+bid_en_w$rel_bid_en <- log(bid_en_w$player.bid.exp) - log(bid_en_w$player.bid.no)
 
 belief_inv_p <- belief_exp_no_long[, c("participant.code", "manager", "player.belief_inv","player.belief_price")]
 belief_inv_p$player.belief_inv[belief_inv_p$player.belief_inv==0]<-1
@@ -90,12 +90,12 @@ hr("SPEC 2 - Relative bid (M - W), rounds 11-20, treatment dummies (baseline = M
 
 bidtrade_lr_long$mw <- ifelse(bidtrade_lr_long$manager %in% c("M_exp", "M_no"), "M",
                         ifelse(bidtrade_lr_long$manager %in% c("W_exp", "W_no"), "W", NA))
-bid_mw_p <- aggregate(log(player.bid) ~ participant.code + group_uid + mw, data = bidtrade_lr_long, FUN = mean)
+bid_mw_p <- aggregate(player.bid ~ participant.code + group_uid + mw, data = bidtrade_lr_long, FUN = mean)
 bid_mw_w <- reshape(bid_mw_p, idvar = c("participant.code","group_uid"), timevar = "mw", direction = "wide")
 
 names(bid_mw_w)<-c("participant.code","group_uid","player.bid.M","player.bid.W")
 
-bid_mw_w$rel_bid_mw <- bid_mw_w$player.bid.M - bid_mw_w$player.bid.W
+bid_mw_w$rel_bid_mw <- log(bid_mw_w$player.bid.M) - log(bid_mw_w$player.bid.W)
 
 
 belief_lr_long$mw <- ifelse(belief_lr_long$manager %in% c("M_exp", "M_no"), "M",

@@ -110,8 +110,6 @@ The market is played for 10 repetitions with  feedback about ttrading outcomes: 
 The first allocation and market games we run is related to the \emph{exp}erience and \emph{no} experience managers, whithout any information about gender, followed by the four treatments that combined manager gender and experience levels. 
 
 
-
-
 \begin{table}[hbtp]
   \caption{Descriptive statistics: Shareholders}
   \label{tab:subjects_lab}
@@ -120,16 +118,16 @@ The first allocation and market games we run is related to the \emph{exp}erience
     \input{../output/tables/descriptives}
   \end{center}
   {\scriptsize 
-    Note: Participants were 200 subjects at NTNU (Singapore).
+    Note: Participants were 200 subjects at NTU (Singapore).
   }
 \end{table}
 
-
-
+\section{Results} \label{sec:results}
 \begin{result}
-There is no difference in investment behavior between male and female managers, nor between managers with managerial experience and those with no experience. \label{r1}
+There is no difference in investment behavior between managers with managerial experience and those with no experience nor between male and female managers. \label{r1}
 \end{result}
 
+Figure~\ref{fig:inv_mana} presents the pairwise comparison across gender and experience level, as well as each cross-comparison. Regardless of the comparison, we find that the average investment is about 50. This investment level ($x=50$) then predicts that the fundamental value is $E[V|]= 100 + x/4\approx 113$ for all manager types. 
 
 \begin{figure}[htb!]
   \label{fig:inv_mana}
@@ -137,15 +135,15 @@ There is no difference in investment behavior between male and female managers, 
     \includegraphics[scale=0.3]{../output/plots/invest_other_gender_experience} 
   \end{center}
     \caption{Delegated investment by gender}
-  {\scriptsize Note:  $p$-value is a t-test comparison between groups.  }
+  {\scriptsize Note:$p$-value is a t-test comparison between groups.  }
 \end{figure}
 
 
-
-
-\begin{result}\label{r2} Subjects tilt their portfolio and bid higher towards managers with experience, but equally split their porfolio and bid between male and female managers given the managerial experience. 
+\begin{result}\label{r2} Subjects tilt their portfolios and bid higher towards managers with experience, but split their portfolios equally and bid similarly between male and female managers given managerial experience. 
 \end{result}
 
+
+Table~\ref{tab:comparison} presents a comparison of shareholder choices, assessing managers' experience and gender in the different treatments. All shareholders first allocate their funds (1st stage) between managers, with or without experience. The allocation ratio, given the observed managerial choices, is predicted to be 1 because the state is drawn independently for each manager. We observe that allocation to the experienced (no experience) manager is 72 (28), making a ratio of 2.6 $>>$ 1.  
 
 \begin{table}[hbtp]
   \caption{Choices by treatment}
@@ -161,12 +159,40 @@ There is no difference in investment behavior between male and female managers, 
   }
 \end{table}
 
+The tilt towards experienced managers is also evident in the treatments across columns T2 and T3, which differ in experience level and gender. In the former, the experienced (men) manager receives an allocation of 68\% and the no-experience (women) manager 32\%, or a ratio of 2.1. In the latter, the experienced (women) manager has 71\%, and the no-experience (men) manager has 29\%, which means a ratio of 2.5. In treatments with the same level of experience but different gender, the ratio is close to 1, meaning that subjects diversify as predicted: 51/49 (49/49) in T1 (T4) with experienced (no-experience) managers.
 
-\begin{result}\label{r3} The allocation and bidding decisions observed are consistent with first (and second) order beliefs about investment in the risky choices. 
+The bids follow the same behavior as in the allocation decisions. Market participants bid strongly for experienced managers. In the first stage, we observe a ratio of $297/137 = 2.2$. In T2, the ratio is $274/132 = 2.1$ while in T3 is $321/119 = 2.7$. When the managers have the same level of experience, the ratio is again closer to 1: 201/207 for T1 (all experience) and 163/191 for T4 (none with experience). The resulting market prices follow the behavior of bids, given that in the call market the price is the median bid. The price ratios are greater than 1 when comparing experience levels and closer to 1 when comparing managers with the same level of experience. 
+
+\begin{result}\label{r3} The behavior observed in allocation and bid prices is consistent with the first- and second-order beliefs stated regarding managers' investment choices and share prices.
 \end{result}
 
-\begin{result}\label{r4} Subjects also predict that share prices for experience managers are higher, consistent with the investment choices, while they predict no price difference across gender. 
+The second panel of Table~\ref{tab:comparison} presents subjects' first-order beliefs regarding investment and share prices. When comparing experience levels, subjects assess that the investment ratio (experience-over-no-experience investment beliefs) is much greater than 1, but when experience levels are fixed, the ratio equals 1. That is, the mechanism behind larger allocations and bid prices for experienced managers is driven by beliefs about investment choices. Looking at share price beliefs, the shareholders correctly anticipate market price behavior: a premium for experienced managers, but equal prices when the comparison keeps the same level of experience. 
+
+As the correlation between first-order and second-order beliefs is strong\footnote{For the comparison in the first stage, the correlations are 0.85 for investment and 0.83 for price. For the other comparisons, the correlations are 0.79 for investment and 0.92 for price.} similar results appear when we analyze the second-order beliefs in the third panel of Table~\ref{tab:comparison}. The (belief) investment ratio is greater than 1 when comparing managers with dissimilar experience, but equal to 1 for the other cases. 
+
+
+
+\begin{table}[!htbp]
+  \centering
+  \caption{Bid (log difference, OLS)}
+  \label{tab:bid_reg}
+  \footnotesize
+  \begin{center}
+    \input{../output/tables/regression_table}
+  \end{center}
+    \begin{tablenotes}
+  \footnotesize
+  \item Note: all specifications include group FE. SE in parentheses. $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$.
+  \end{tablenotes}
+\end{table}
+
+
+\begin{result} 
+\label{r7}
+There is no significant difference in the bids submitted by male and female subjects.
 \end{result}
+
+
 
 
 \end{document}

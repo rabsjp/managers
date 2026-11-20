@@ -190,7 +190,6 @@ alloc_right<- cbind(r11[id_cols], manager = r11$right_mgr_label, player.allocati
 
 #alloc_left$manager <- factor(alloc_left$manager, levels = c("M_exp", "M_no", "W_exp", "W_no"))
 
-
 alloc_long <- rbind(
   cbind(r1[id_cols], manager = "exp", player.allocation = alloc_exp),
   cbind(r1[id_cols], manager = "no",  player.allocation = alloc_no),
@@ -199,8 +198,6 @@ alloc_long <- rbind(
 )
 alloc_long <- alloc_long[!is.na(alloc_long$player.allocation), ]
 alloc_long$manager <- factor(alloc_long$manager, levels = c("no", "exp","M_exp", "M_no", "W_exp", "W_no"))
-
-
 
 
 # ==========================================================================
@@ -227,6 +224,8 @@ build_exp_no_long <- function(df, bases) {
 belief_exp_no_long <- build_exp_no_long(r1, belief_bases)
 keep_rows <- rowSums(!is.na(belief_exp_no_long[belief_bases])) > 0
 belief_exp_no_long <- belief_exp_no_long[keep_rows, ]
+
+belief_exp_no_long$v_belief_inv<-belief_exp_no_long$player.belief_inv/4+100
 
 # ==========================================================================
 # 7. bidtrade_exp_no_long : rounds 1-10 repeated market, manager in {exp,no}
@@ -268,6 +267,7 @@ build_lr_long <- function(df, bases) {
 belief_lr_long <- build_lr_long(r11, belief_bases)
 keep_rows <- rowSums(!is.na(belief_lr_long[belief_bases])) > 0
 belief_lr_long <- belief_lr_long[keep_rows, ]
+belief_lr_long$v_belief_inv<-belief_lr_long$player.belief_inv/4+100
 
 # ==========================================================================
 # 9. bidtrade_lr_long : rounds 11-20 repeated market, manager identified as
